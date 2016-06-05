@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 var fs = require('fs');
 var vm = require('vm');
-var files = ['script/vector_functions.js', 'script/bot_functions.js'];
+var files = ['script/vector_functions.js', 'script/bot_functions.js', 'script/util.js'];
 
 var loadFiles = function(files) {
 	files.map(path => {
@@ -72,4 +72,29 @@ describe('bot functions', function(){
 			expect(bot.direction.name).to.equal(directions.NORTH.name);
 		});
 	});
+});
+
+describe('util', function(){
+	it('chain functions', function(done){
+		var add1 = function(x) {
+			return new Promise(function(resolve, reject) {
+				resolve(x + 1);
+			});
+		}
+		
+		var mul2 = function(x) {
+			return new Promise(function(resolve, reject) {
+				resolve(x * 2);
+			})
+		}
+		
+		var functions = [add1, mul2];
+		var chain = createChain(functions);
+		//chain(0) = mul2(add1(0)) = 2 * (0 + 1) = 2
+		chain(0).then(function(output){
+			expect(output).to.equal(2);
+			done();
+		})
+		.catch(done);
+	})
 });
