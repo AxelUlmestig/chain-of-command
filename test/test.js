@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 var fs = require('fs');
 var vm = require('vm');
-var files = ['script/vector_functions.js'];
+var files = ['script/vector_functions.js', 'script/bot_functions.js'];
 
 var loadFiles = function(files) {
 	files.map(path => {
@@ -55,3 +55,21 @@ describe('vector functions', function(){
 	});
 });
 
+describe('bot functions', function(){
+	describe('init', function(){
+		it('position', function(){
+			var x = -3;
+			var y = 2;
+			var bot = initiateBot(x, y);
+			expect(bot.position.x).to.equal(x);
+			expect(bot.position.y).to.equal(y);
+		});
+
+		it('position', function(){
+			var x = -3;
+			var y = 2;
+			var bot = initiateBot(x, y);
+			expect(bot.direction.name).to.equal(directions.NORTH.name);
+		});
+	});
+});
