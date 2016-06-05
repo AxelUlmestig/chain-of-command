@@ -19,7 +19,7 @@ directions = {
 	},
 	'WEST': {
 		'name': 'W',
-		'value' createVector(-1, 0),
+		'value': createVector(-1, 0),
 		'turn_right': 'NORTH',
 		'turn_left': 'SOUTH'
 	}
@@ -33,13 +33,19 @@ var initiateBot = function(x, y) {
 }
 
 var moveBot = function(bot) {
-	return bot;
+	return new Promise(function(resolve, reject){
+		resolve(bot);
+	});
 }
 
 var turnBotRight = function(bot) {
-	return bot;
+	return new Promise(function(resolve, reject){
+		resolve(bot);
+	});
 }
 
 var turnBotLeft = function(bot) {
-	return bot;
+	return new Promise(function(resolve, reject){
+		resolve(bot);
+	});
 }
