@@ -1,24 +1,24 @@
 directions = {
 	'NORTH': {
-		'name': 'N',
+		'name': 'NORTH',
 		'value': createVector(0, 1),
 		'turn_right': 'EAST',
 		'turn_left': 'WEST'
 	},
 	'EAST': {
-		'name': 'E',
+		'name': 'EAST',
 		'value': createVector(1, 0),
 		'turn_right': 'SOUTH',
 		'turn_left': 'NORTH'
 	},
 	'SOUTH': {
-		'name': 'S',
+		'name': 'SOUTH',
 		'value': createVector(0, -1),
 		'turn_right': 'WEST',
 		'turn_left': 'EAST'
 	},
 	'WEST': {
-		'name': 'W',
+		'name': 'WEST',
 		'value': createVector(-1, 0),
 		'turn_right': 'NORTH',
 		'turn_left': 'SOUTH'
