@@ -48,5 +48,11 @@ var turnBotLeft = function(bot) {
 }
 
 var getNewDirection = function(bot, turnValue) {
-	return bot.direction;
+	var dirList = Object.keys(directions);
+	var dirListLen = dirList.length
+	var curDirIndex = dirList.indexOf(bot.direction.name);
+	var newDirIndex = (curDirIndex + turnValue + dirListLen) % dirListLen; //adding dirListLen because JS modulus operation can't handle negative values
+	var newDirName = dirList[newDirIndex];
+	var newDir = directions[newDirName];
+	return newDir;
 }
