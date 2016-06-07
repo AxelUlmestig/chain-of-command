@@ -146,6 +146,7 @@ describe('bot functions', function(){
 		it('move forward, south', function(done){
 			var bot = initiateBot(0, 0);
 			turnBotRight(bot)
+			.then(turnBotRight)
 			.then(moveBot)
 			.then(function(bot) {
 				expect(bot.position).to.deep.equal(createVector(0, -1));
