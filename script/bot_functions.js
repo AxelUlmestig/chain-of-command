@@ -34,7 +34,12 @@ var initiateBot = function(x, y) {
 
 var moveBot = function(bot) {
 	return new Promise(function(resolve, reject){
-		resolve(bot);
+		var dir = bot.direction;
+		var pos = addVectors(bot.position, dir.value);
+		resolve({
+			'position': pos,
+			'direction': dir
+		});
 	});
 }
 
