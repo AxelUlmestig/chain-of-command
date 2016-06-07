@@ -37,13 +37,21 @@ var moveBot = function(bot) {
 
 var turnBotRight = function(bot) {
 	return new Promise(function(resolve, reject){
-		resolve(bot);
+		var newDir = getNewDirection(bot, 1);
+		resolve({
+			'position': bot.position,
+			'direction': newDir
+		});
 	});
 }
 
 var turnBotLeft = function(bot) {
 	return new Promise(function(resolve, reject){
-		resolve(bot);
+		var newDir = getNewDirection(bot, -1);
+		resolve({
+			'position': bot.position,
+			'direction': newDir
+		});
 	});
 }
 
