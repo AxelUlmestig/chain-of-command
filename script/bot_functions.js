@@ -46,3 +46,7 @@ var turnBotLeft = function(bot) {
 		resolve(bot);
 	});
 }
+
+var getNewDirection = function(bot, turnValue) {
+	return bot.direction;
+}
