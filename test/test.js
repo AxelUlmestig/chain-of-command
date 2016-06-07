@@ -72,6 +72,100 @@ describe('bot functions', function(){
 			expect(bot.direction.name).to.equal(directions.NORTH.name);
 		});
 	});
+
+	describe('movement', function() {
+		it('turn left', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotLeft(bot)
+			.then(function(bot) {
+				expect(bot.direction.name).to.equal(directions.WEST.name);
+				done();
+			})
+			.catch(done);
+		});
+
+		it('turn right', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotRight(bot)
+			.then(function(bot) {
+				expect(bot.direction.name).to.equal(directions.EAST.name);
+				done();
+			})
+			.catch(done);
+		});
+
+		it('turn right x4', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotRight(bot)
+			.then(turnBotRight)
+			.then(turnBotRight)
+			.then(turnBotRight)
+			.then(function(bot) {
+				expect(bot.direction.name).to.equal(directions.NORTH.name);
+				done();
+			})
+			.catch(done);
+		});
+
+
+		it('turn left x4', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotLeft(bot)
+			.then(turnBotLeft)
+			.then(turnBotLeft)
+			.then(turnBotLeft)
+			.then(function(bot) {
+				expect(bot.direction.name).to.equal(directions.NORTH.name);
+				done();
+			})
+			.catch(done);
+		});
+
+		it('move forward, north', function(done){
+			var bot = initiateBot(0, 0);
+			moveBot(bot)
+			.then(function(bot) {
+				expect(bot.position).to.deep.equal(createVector(0, 1));
+				done();
+			})
+			.catch(done);
+		});
+
+		it('move forward, east', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotRight(bot)
+			.then(moveBot)
+			.then(function(bot) {
+				expect(bot.position).to.deep.equal(createVector(1, 0));
+				done();
+			})
+			.catch(done);
+		});
+
+
+		it('move forward, south', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotRight(bot)
+			.then(moveBot)
+			.then(function(bot) {
+				expect(bot.position).to.deep.equal(createVector(0, -1));
+				done();
+			})
+			.catch(done);
+		});
+
+		it('move forward, west', function(done){
+			var bot = initiateBot(0, 0);
+			turnBotRight(bot)
+			.then(moveBot)
+			.then(function(bot) {
+				expect(bot.position).to.deep.equal(createVector(-1, 0));
+				done();
+			})
+			.catch(done);
+		});
+
+	});
 });
 
 describe('util', function(){
