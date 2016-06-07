@@ -165,6 +165,12 @@ describe('bot functions', function(){
 			.catch(done);
 		});
 
+		it('getNewDirection', function() {
+			var bot = initiateBot(0, 0);
+			var newDir = getNewDirection(bot, -1);
+			expect(newDir.name).to.equal(directions.WEST.name);
+		});
+
 	});
 });
 
