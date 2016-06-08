@@ -1,4 +1,4 @@
-directions = {
+const DIRECTIONS = {
 	'NORTH': {
 		'name': 'NORTH',
 		'value': createVector(0, 1)
@@ -20,7 +20,7 @@ directions = {
 var initiateBot = function(x, y) {
 	return {
 		'position': createVector(x, y),
-		'direction': directions.NORTH
+		'direction': DIRECTIONS.NORTH
 	}
 }
 
@@ -56,11 +56,11 @@ var turnBotLeft = function(bot) {
 }
 
 var getNewDirection = function(bot, turnValue) {
-	var dirList = Object.keys(directions);
+	var dirList = Object.keys(DIRECTIONS);
 	var dirListLen = dirList.length
 	var curDirIndex = dirList.indexOf(bot.direction.name);
 	var newDirIndex = (curDirIndex + turnValue + dirListLen) % dirListLen; //adding dirListLen because JS modulus operation can't handle negative values
 	var newDirName = dirList[newDirIndex];
-	var newDir = directions[newDirName];
+	var newDir = DIRECTIONS[newDirName];
 	return newDir;
 }

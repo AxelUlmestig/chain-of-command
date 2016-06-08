@@ -76,7 +76,7 @@ describe('bot functions', function(){
 			var x = -3;
 			var y = 2;
 			var bot = initiateBot(x, y);
-			expect(bot.direction.name).to.equal(directions.NORTH.name);
+			expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
 		});
 	});
 
@@ -85,7 +85,7 @@ describe('bot functions', function(){
 			var bot = initiateBot(0, 0);
 			turnBotLeft(bot)
 			.then(function(bot) {
-				expect(bot.direction.name).to.equal(directions.WEST.name);
+				expect(bot.direction.name).to.equal(DIRECTIONS.WEST.name);
 				done();
 			})
 			.catch(done);
@@ -95,7 +95,7 @@ describe('bot functions', function(){
 			var bot = initiateBot(0, 0);
 			turnBotRight(bot)
 			.then(function(bot) {
-				expect(bot.direction.name).to.equal(directions.EAST.name);
+				expect(bot.direction.name).to.equal(DIRECTIONS.EAST.name);
 				done();
 			})
 			.catch(done);
@@ -108,7 +108,7 @@ describe('bot functions', function(){
 			.then(turnBotRight)
 			.then(turnBotRight)
 			.then(function(bot) {
-				expect(bot.direction.name).to.equal(directions.NORTH.name);
+				expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
 				done();
 			})
 			.catch(done);
@@ -122,7 +122,7 @@ describe('bot functions', function(){
 			.then(turnBotLeft)
 			.then(turnBotLeft)
 			.then(function(bot) {
-				expect(bot.direction.name).to.equal(directions.NORTH.name);
+				expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
 				done();
 			})
 			.catch(done);
@@ -176,7 +176,7 @@ describe('bot functions', function(){
 		it('getNewDirection', function() {
 			var bot = initiateBot(0, 0);
 			var newDir = getNewDirection(bot, -1);
-			expect(newDir.name).to.equal(directions.WEST.name);
+			expect(newDir.name).to.equal(DIRECTIONS.WEST.name);
 		});
 
 	});
