@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 var fs = require('fs');
 var vm = require('vm');
-var files = ['script/vector_functions.js', 'script/bot_functions.js', 'script/util.js'];
+var files = ['script/vector_functions.js', 'script/bot_functions.js', 'script/util.js', 'script/interpreter.js'];
 
 var loadFiles = function(files) {
 	files.map(path => {
@@ -181,6 +181,52 @@ describe('bot functions', function(){
 
 	});
 });
+
+describe('interpreter', function() {
+	describe('compileCommands', function() {
+		it('unbound, english', function(done) {
+			var bot = initiateBot(0, 0);
+			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
+			var lang = LANGUAGES.EN;
+			var inBound = bot => true;
+			var executeCommands = compileCommands(commandString, lang, inBound);
+			executeCommands(bot)
+			.then(function(movedBot){
+				expect(movedBot.position).to.deep.equal(createVector(2, 1));
+				done();
+			})
+			.catch(done);
+		});
+
+		it('bound, english', function(done) {
+			var bot = initiateBot(0, 0);
+			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
+			var lang = LANGUAGES.EN;
+			var inBound = bot => bot.x < 2;
+			var executeCommands = compileCommands(commandString, lang, inBound);
+			executeCommands(bot)
+			.then(function(movedBot){
+				expect(movedBot.position).to.deep.equal(createVector(1, 1));
+				done();
+			})
+			.catch(done);
+		});
+
+		it('unbound, swedish', function(done) {
+			var bot = initiateBot(0, 0);
+			var commandString = 'GFhGg'; //forward, (english forward), right, forward, forward
+			var lang = LANGUAGES.EN;
+			var inBound = bot => true;
+			var executeCommands = compileCommands(commandString, lang, inBound);
+			executeCommands(bot)
+			.then(function(movedBot){
+				expect(movedBot.position).to.deep.equal(createVector(2, 1));
+				done();
+			})
+			.catch(done);
+		});
+	});
+})
 
 describe('util', function(){
 	it('chain functions', function(done){
