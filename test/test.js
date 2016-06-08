@@ -26,7 +26,7 @@ describe('vector functions', function(){
 		expect(sum.y).to.equal(y1 + y2);
 	});
 
-	describe('inSpace', function() {
+	describe('inRectangle', function() {
 		it('true', function() {
 			var x1 = 60;
 			var y1 = 175;
@@ -37,7 +37,7 @@ describe('vector functions', function(){
 			var v1 = createVector(x1, y1);
 			var v2 = createVector(x2, y2);
 			var v3 = createVector(x3, y3);
-			expect(inSpace(v1, v2, v3)).to.be.ok;
+			expect(inRectangle(v1, v2, v3)).to.be.ok;
 		});
 
 		it('false', function() {
@@ -50,7 +50,7 @@ describe('vector functions', function(){
 			var v1 = createVector(x1, y1);
 			var v2 = createVector(x2, y2);
 			var v3 = createVector(x3, y3);
-			expect(inSpace(v1, v2, v3)).to.not.be.ok;
+			expect(inRectangle(v1, v2, v3)).to.not.be.ok;
 		});
 	});
 
