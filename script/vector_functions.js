@@ -13,7 +13,12 @@ var addVectors = function(v1, v2) {
 }
 
 var getVectorDistance = function(v1, v2) {
-	return 0;
+	var dx = v1.x - v2.x;
+	var dy = v1.y - v2.y;
+	var dx2 = Math.pow(dx, 2);
+	var dy2 = Math.pow(dy, 2);
+	var distance = Math.pow(dx2 + dy2, 0.5);
+	return distance;
 }
 
 //checks if v1 is in the rectangle created between v2 and v3
