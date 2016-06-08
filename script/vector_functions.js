@@ -12,6 +12,10 @@ var addVectors = function(v1, v2) {
 	}
 }
 
+var getVectorDistance = function(v1, v2) {
+	return 0;
+}
+
 //checks if v1 is in the rectangle created between v2 and v3
 var inSpace = function(v1, v2, v3) {
 	var inX = v1.x <= Math.max(v2.x, v3.x) && v1.x >= Math.min(v2.x, v3.x);
