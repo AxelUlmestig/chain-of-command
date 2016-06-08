@@ -53,6 +53,13 @@ describe('vector functions', function(){
 			expect(inSpace(v1, v2, v3)).to.not.be.ok;
 		});
 	});
+
+	it('distance', function() {
+		var v1 = createVector(0, 0);
+		var v2 = createVector(3, 4);
+		var dist = getVectorDistance(v1, v2);
+		expect(dist).to.equal(5);
+	});
 });
 
 describe('bot functions', function(){
