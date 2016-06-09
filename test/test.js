@@ -310,7 +310,7 @@ describe('interpreter', function() {
 		it('unbound, swedish', function(done) {
 			var bot = initiateBot(0, 0);
 			var commandString = 'GFhGg'; //forward, (english forward), right, forward, forward
-			var lang = LANGUAGES.EN;
+			var lang = LANGUAGES.SE;
 			var inBound = bot => true;
 			var executeCommands = compileCommands(commandString, lang, inBound);
 			executeCommands(bot)
