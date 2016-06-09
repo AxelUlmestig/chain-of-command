@@ -18,6 +18,8 @@ const LANGUAGES = {
 }
 
 var compileCommands = function(commandString, language, inBounds) {
+	var commandArray = commandString.split('');
+	var commands = commandArray.map(letter => getFunction(language, letter));
 	return function(x) {
 		return new Promise(function(resolve, reject) {
 			resolve(x);
@@ -33,4 +35,12 @@ var getFunction = function(language, letter) {
 		f = id; //id function from script/util.js
 	}
 	return f;
+}
+
+/*
+A decorator which executes a command and then checks if InBounds is true. 
+If the result is not inBounds then it will return the original function input.
+*/
+var constrainCommand = function(withinConstraints, command) {
+	return command;
 }
