@@ -250,5 +250,15 @@ describe('util', function(){
 			done();
 		})
 		.catch(done);
-	})
+	});
+
+	it('id', function(done) {
+		var x = 3;
+		id(x)
+		.then(function(y) {
+			expect(y).to.equal(x);
+			done();
+		})
+		.catch(done);
+	});
 });
