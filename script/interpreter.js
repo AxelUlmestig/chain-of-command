@@ -27,5 +27,10 @@ var compileCommands = function(commandString, language, inBounds) {
 
 //converts a command letter to a function, returns id function from util if no match is found
 var getFunction = function(language, letter) {
-	return id;
+	var lowerCaseLetter = letter.toLowerCase();
+	var f = language.functions_map[lowerCaseLetter];
+	if(!f) {
+		f = id; //id function from script/util.js
+	}
+	return f;
 }
