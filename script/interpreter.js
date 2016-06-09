@@ -24,3 +24,8 @@ var compileCommands = function(commandString, language, inBounds) {
 		});
 	};
 }
+
+//converts a command letter to a function, returns id function from util if no match is found
+var getFunction = function(language, letter) {
+	return id;
+}
