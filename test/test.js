@@ -183,6 +183,60 @@ describe('bot functions', function(){
 });
 
 describe('interpreter', function() {
+	describe('getFunction', function() {
+		it('english f', function(done){
+			var bot = initiateBot(0, 0);
+			var letter = 'f';
+			var lang = LANGUAGES.EN
+			var f = getFunction(lang, letter);
+			f(bot)
+			.then(function(newBot){
+				expect(newBot.position).to.deep.equal(createVector(0, 1)); //expect one step north from (0, 0) -> (0, 1)
+				done();
+			})
+			.catch(done);
+		});
+
+		it('english F', function(done){
+			var bot = initiateBot(0, 0);
+			var letter = 'F';
+			var lang = LANGUAGES.EN
+			var f = getFunction(lang, letter);
+			f(bot)
+			.then(function(newBot){
+				expect(newBot.position).to.deep.equal(createVector(0, 1)); //expect one step north from (0, 0) -> (0, 1)
+				done();
+			})
+			.catch(done);
+		});
+
+		it('swedish f', function(done){
+			var bot = initiateBot(0, 0);
+			var letter = 'f';
+			var lang = LANGUAGES.SE
+			var f = getFunction(lang, letter);
+			f(bot)
+			.then(function(newBot){
+				expect(newBot.position).to.deep.equal(createVector(0, 0)); //expect no movement, it should stay at the origin
+				done();
+			})
+			.catch(done);
+		});
+
+		it('swedish g', function(done){
+			var bot = initiateBot(0, 0);
+			var letter = 'g';
+			var lang = LANGUAGES.SE
+			var f = getFunction(lang, letter);
+			f(bot)
+			.then(function(newBot){
+				expect(newBot.position).to.deep.equal(createVector(0, 1)); //expect one step north from (0, 0) -> (0, 1)
+				done();
+			})
+			.catch(done);
+		});
+	});
+
 	describe('compileCommands', function() {
 		it('unbound, english', function(done) {
 			var bot = initiateBot(0, 0);
