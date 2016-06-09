@@ -235,6 +235,19 @@ describe('interpreter', function() {
 			})
 			.catch(done);
 		});
+
+		it('swedish h', function(done){
+			var bot = initiateBot(0, 0);
+			var letter = 'h';
+			var lang = LANGUAGES.SE
+			var f = getFunction(lang, letter);
+			f(bot)
+			.then(function(newBot){
+				expect(newBot.direction).to.equal(DIRECTIONS.EAST); 
+				done();
+			})
+			.catch(done);
+		});
 	});
 
 	describe('constrainCommand', function() {
