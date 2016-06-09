@@ -14,3 +14,10 @@ var createChain = function(arr) {
 		return chainFunctions(arr, arg);
 	}
 }
+
+//identity function, id(x) = x
+var id = function(x) {
+	return new Promise(function(resolve, reject) {
+		resolve(x);
+	});
+}
