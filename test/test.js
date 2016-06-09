@@ -284,7 +284,7 @@ describe('interpreter', function() {
 			var bot = initiateBot(0, 0);
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
-			var inBound = bot => bot.x < 2;
+			var inBound = bot => bot.position.x < 2;
 			var executeCommands = compileCommands(commandString, lang, inBound);
 			executeCommands(bot)
 			.then(function(movedBot){
