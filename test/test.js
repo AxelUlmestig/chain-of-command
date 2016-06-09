@@ -237,6 +237,34 @@ describe('interpreter', function() {
 		});
 	});
 
+	describe('constrainCommand', function() {
+		it('moveBot constrained', function(done){
+			var bot = initiateBot(0, 0);
+			var command = moveBot;
+			var inConstraints = bot => bot.position.y < 1;
+			var constrainedCommand = constrainCommand(inConstraints, command);
+			constrainedCommand(bot)
+			.then(function(newBot){
+				expect(newBot.position).to.deep.equal(createVector(0, 0));
+				done();
+			})
+			.catch(done);
+		});
+
+		it('moveBot unconstrained', function(done){
+			var bot = initiateBot(0, 0);
+			var command = moveBot;
+			var inConstraints = bot => bot.position.x < 1;
+			var constrainedCommand = constrainCommand(inConstraints, command);
+			constrainedCommand(bot)
+			.then(function(newBot){
+				expect(newBot.position).to.deep.equal(createVector(0, 1));
+				done();
+			})
+			.catch(done);
+		});
+	});
+
 	describe('compileCommands', function() {
 		it('unbound, english', function(done) {
 			var bot = initiateBot(0, 0);
