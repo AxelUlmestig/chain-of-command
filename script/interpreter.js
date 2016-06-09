@@ -42,5 +42,16 @@ A decorator which executes a command and then checks if InBounds is true.
 If the result is not inBounds then it will return the original function input.
 */
 var constrainCommand = function(withinConstraints, command) {
-	return command;
+	return function(x) {
+		return new Promise(function(resolve, reject){
+			command(x)
+			.then(function(y){
+				if(withinConstraints(y)) {
+					resolve(y);
+				} else {
+					resolve(x);
+				}
+			});
+		})
+	}
 }
