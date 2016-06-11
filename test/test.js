@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 var fs = require('fs');
 var vm = require('vm');
-var files = ['script/vector_functions.js', 'script/bot_functions.js', 'script/util.js', 'script/interpreter.js'];
+var files = ['script/vector_functions.js', 'script/bot_functions.js', 'script/util.js', 'script/interpreter.js', 'script/space_functions.js'];
 
 var loadFiles = function(files) {
 	files.map(path => {
@@ -322,6 +322,91 @@ describe('interpreter', function() {
 		});
 	});
 })
+
+describe('space functions', function(){
+	it('initiateBotInSpace', function(){
+		var xStart = 5;
+		var yStart = 5;
+
+		var xCorner1 = 0;
+		var yCorner1 = 0;
+
+		var xCorner2 = 10;
+		var yCorner2 = 10;
+
+		var space = createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2);
+		var bot = initiateBotInSpace(space);
+		var expectedPosition = createVector(xStart, yStart);
+		expect(bot.position).to.deep.equal(expectedPosition);
+	});
+
+	it('createRectangularSpace', function(done){
+		var xCorner1 = 0;
+		var yCorner1 = 3;
+
+		var xCorner2 = 10;
+		var yCorner2 = 6;
+
+		var xStart = 5;
+		var yStart = 5;
+
+		var space = createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2);
+		var bot = initiateBotInSpace(space);
+		var lang = LANGUAGES.EN;
+
+		var commandString = 'ffllff'; //forward, forward, left, left, forward, forward
+		var command = compileCommands(commandString, lang, space.contains);
+		command(bot)
+		.then(function(movedBot){
+			/*
+			 * expected path:
+			 * 	forward, north: 		(5, 5, N) -> (5, 6, N)
+			 * 	forward, north (hit wall): 	(5, 6, N) -> (5, 6, N)
+			 * 	left:				(5, 6, N) -> (5, 6, W)
+			 * 	left:				(5, 6, W) -> (5, 6, S)
+			 * 	forward, south:			(5, 6, S) -> (5, 5, S)
+			 * 	forward, south: 		(5, 5, S) -> (5, 4, S)
+			 */	
+			var expectedPosition = createVector(5, 4);
+			expect(movedBot.position).to.deep.equal(expectedPosition);
+			done();
+		})
+		.catch(done);
+	});
+
+	it('createCircularSpace', function(done){
+		var xSpaceCenter = 0;
+		var ySpaceCenter = 3;
+		var radius = 3;
+
+		var xStart = 1;
+		var yStart = 4;
+
+		var space = createCircularSpace(xStart, yStart, xSpaceCenter, ySpaceCenter, radius);
+		var bot = initiateBotInSpace(space);
+		var lang = LANGUAGES.EN;
+
+		var commandString = 'rrflfff'; //right, right, forward, left, forward, forward, forward
+		var command = compileCommands(commandString, lang, space.contains);
+		command(bot)
+		.then(function(movedBot){
+			/*
+			 * expected path:
+			 * 	right: 				(1, 4, N) -> (1, 4, E)
+			 * 	right: 				(1, 4, E) -> (1, 4, S)
+			 * 	forward, south: 		(1, 4, S) -> (1, 3, S)
+			 * 	left:				(1, 3, S) -> (1, 3, E)
+			 * 	forward, east: 			(1, 3, E) -> (2, 3, E)
+			 * 	forward, east: 			(2, 3, E) -> (3, 3, E)
+			 * 	forward, east (hit wall): 	(3, 3, E) -> (3, 3, E)
+			 */	
+			var expectedPosition = createVector(3, 3);
+			expect(movedBot.position).to.deep.equal(expectedPosition);
+			done();
+		})
+		.catch(done);
+	});
+});
 
 describe('util', function(){
 	it('chain functions', function(done){
