@@ -25,18 +25,22 @@ var createSpace = function(startPosition, contains) {
 }
 
 var createCircularSpace = function(xStart, yStart, xCenter, yCenter, radius) {
-	var startPosition = createVector(0, 0);
-	var inBoundary = x => true;
+	var startPosition = createVector(xStart, yStart);
+	var circleCenter = createVector(xCenter, yCenter);
+	var inBoundary = createCircleBoundary(circleCenter, radius);
 	return createSpace(startPosition, inBoundary);
 }
 
 var createRectangularSpace = function(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2) {
-	var startPosition = createVector(0, 0);
-	var inBoundary = x => true;
+	var startPosition = createVector(xStart, yStart);
+	var corner1 = createVector(xCorner1, yCorner1);
+	var corner2 = createVector(xCorner2, yCorner2);
+	var inBoundary = createRectangleBoundary(corner1, corner2);
 	return createSpace(startPosition, inBoundary);
 }
 
 var initiateBotInSpace = function(space) {
-	var bot = initiateBot(0, 0); //initiateBot defined in script/bot_functions.js
+	var startPosition = space.start_position;
+	var bot = initiateBot(startPosition.x, startPosition.y); //initiateBot defined in script/bot_functions.js
 	return bot;
 }
