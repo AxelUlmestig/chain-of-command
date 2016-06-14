@@ -64,3 +64,7 @@ var getNewDirection = function(bot, turnValue) {
 	var newDir = DIRECTIONS[newDirName];
 	return newDir;
 }
+
+var showBot = function(bot) {
+	return 'to be implemented';
+}
