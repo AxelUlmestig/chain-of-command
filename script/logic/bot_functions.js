@@ -66,5 +66,8 @@ var getNewDirection = function(bot, turnValue) {
 }
 
 var showBot = function(bot) {
-	return 'to be implemented';
+	var x = bot.position.x;
+	var y = bot.position.y;
+	var direction = bot.direction.name.substring(0, 1);
+	return '(' + x + ', ' + y + ', ' + direction + ')';
 }
