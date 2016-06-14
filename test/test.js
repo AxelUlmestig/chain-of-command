@@ -180,6 +180,54 @@ describe('bot functions', function(){
 		});
 
 	});
+
+	describe('show bot', function(){
+		it('(0, 0, N)', function(){
+			var bot = initiateBot(0, 0);
+			var printedBot = showBot(bot);
+			expect(printedBot).to.deep.equal('(0, 0, N)');
+		});
+
+		it('(7, 1, N)', function(){
+			var bot = initiateBot(7, 1);
+			var printedBot = showBot(bot);
+			expect(printedBot).to.deep.equal('(7, 1, N)');
+		});
+
+		it('(3, 4, E)', function(done){
+			var bot = initiateBot(3, 4);
+			turnBotRight(bot)
+			.then(function(turnedBot){
+				var printedBot = showBot(turnedBot);
+				expect(printedBot).to.deep.equal('(3, 4, E)');
+				done();
+			})
+			.catch(done);
+		});
+
+		it('(-2, 5, S)', function(done){
+			var bot = initiateBot(-2, 5);
+			turnBotRight(bot)
+			.then(turnBotRight)
+			.then(function(turnedBot){
+				var printedBot = showBot(turnedBot);
+				expect(printedBot).to.deep.equal('(-2, 5, S)');
+				done();
+			})
+			.catch(done);
+		});
+
+		it('(0, 3, W)', function(done) {
+			var bot = initiateBot(0, 3);
+			turnBotLeft(bot)
+			.then(function(turnedBot){
+				var printedBot = showBot(turnedBot);
+				expect(printedBot).to.deep.equal('(0, 3, W)');
+				done();
+			})
+			.catch(done);
+		});
+	});
 });
 
 describe('interpreter', function() {
