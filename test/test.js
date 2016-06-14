@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 var fs = require('fs');
 var vm = require('vm');
-var files = ['script/vector_functions.js', 'script/bot_functions.js', 'script/util.js', 'script/interpreter.js', 'script/space_functions.js'];
+var files = ['script/logic/vector_functions.js', 'script/logic/bot_functions.js', 'script/logic/util.js', 'script/logic/interpreter.js', 'script/logic/space_functions.js'];
 
 var loadFiles = function(files) {
 	files.map(path => {
