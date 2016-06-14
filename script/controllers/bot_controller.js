@@ -32,6 +32,7 @@ app.controller('bot_controller', function($scope, state) {
 		command(bot)
 		.then(function(movedBot){
 			$scope.state.bot = movedBot;
+			$scope.$apply();
 		});
 	}
 })
