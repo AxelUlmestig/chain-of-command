@@ -18,6 +18,9 @@
 		<div ng-app="bot">
 
 			<div ng-controller="lang_controller">
+				<select ng-model="selectedLang" ng-change="selectedLangChanged()">
+					<option ng-repeat="lang in languages" value="{{lang.name}}">{{lang.name}}</option>
+				</select>
 			</div>
 
 			<div ng-controller="space_controller">
