@@ -24,7 +24,7 @@
 			</div>
 
 			<div ng-controller="space_controller">
-				Space shape: <select ng-model="selectedShape" ng-change="selectedShapeChanged(selectedShape)">
+				Space shape: <select ng-model="selectedShape">
 					<option ng-repeat="shape in shapes" value="{{shape}}">{{shape}}</option>
 				</select>
 

@@ -1,10 +1,6 @@
 app.controller('space_controller', function($scope, state) {
 	$scope.shapes = ['Rectangle', 'Circle'];
 
-	$scope.selectedShapeChanged = function(shapeName) {
-		console.log(shapeName);
-	}
-
 	$scope.circle = {
 		'start': {},
 		'center': {}
