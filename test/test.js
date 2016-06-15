@@ -368,6 +368,20 @@ describe('interpreter', function() {
 			})
 			.catch(done);
 		});
+
+		it('empty command', function(done) {
+			var bot = initiateBot(0, 0);
+			var commandString = '';
+			var lang = LANGUAGES.SE;
+			var inBound = bot => true;
+			var executeCommands = compileCommands(commandString, lang, inBound);
+			executeCommands(bot)
+			.then(function(movedBot){
+				expect(movedBot.position).to.deep.equal(createVector(0, 0));
+				done();
+			})
+			.catch(done);
+		})
 	});
 })
 
