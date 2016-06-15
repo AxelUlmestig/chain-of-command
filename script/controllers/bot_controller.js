@@ -25,7 +25,6 @@ app.controller('bot_controller', function($scope, state) {
 	$scope.sendCommand = function(commandString) {
 		var space = $scope.state.space;
 		var lang = $scope.state.language;
-		console.log(typeof(lang));
 		var command = compileCommands(commandString, lang, space.contains);
 
 		var bot = $scope.state.bot;
