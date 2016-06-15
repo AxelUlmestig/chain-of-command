@@ -59,7 +59,7 @@
 			</div>
 	
 			<div ng-controller="bot_controller" ng-show="state.bot">
-				<form ng-submit="sendCommand(commandString)">
+				<form ng-init="commandString = ''" ng-submit="sendCommand(commandString)">
 					<input type="text" ng-model="commandString">
 					<input type="submit" value="Submit">
 					<button type="button" ng-click="resetBot()">Reset</button>
