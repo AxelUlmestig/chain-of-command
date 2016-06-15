@@ -18,13 +18,13 @@
 		<div ng-app="bot">
 
 			<div ng-controller="lang_controller">
-				<select ng-model="selectedLang" ng-change="selectedLangChanged(selectedLang)">
+				Language: <select ng-model="selectedLang" ng-change="selectedLangChanged(selectedLang)">
 					<option ng-repeat="lang in languages" value="{{lang.name}}">{{lang.name}}</option>
 				</select>
 			</div>
 
 			<div ng-controller="space_controller">
-				<select ng-model="selectedShape" ng-change="selectedShapeChanged(selectedShape)">
+				Space shape: <select ng-model="selectedShape" ng-change="selectedShapeChanged(selectedShape)">
 					<option ng-repeat="shape in shapes" value="{{shape}}">{{shape}}</option>
 				</select>
 
