@@ -34,4 +34,9 @@ app.controller('bot_controller', function($scope, state) {
 			$scope.$apply();
 		});
 	}
+
+	$scope.resetBot = function() {
+		var space = $scope.state.space;
+		$scope.state.bot = initiateBotInSpace(space);
+	}
 })

@@ -62,6 +62,7 @@
 				<form ng-submit="sendCommand(commandString)">
 					<input type="text" ng-model="commandString">
 					<input type="submit" value="Submit">
+					<button type="button" ng-click="resetBot()">Reset</button>
 				</form>
 				<p>{{showBot()}}<p>
 			</div>
