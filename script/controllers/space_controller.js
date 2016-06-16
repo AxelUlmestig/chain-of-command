@@ -1,3 +1,14 @@
+/*
+ * Handles the creation and manipulation of spaces from user.
+ *
+ * Has dependencies to the following files/functions:
+ *
+ * 	script/logic/space_functions.js
+ * 		createCircularSpace(xStart, yStart, xCenter, yCenter, radius)
+ * 		createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2)
+ *
+ */
+
 app.controller('space_controller', function($scope, state) {
 	$scope.shapes = ['Rectangle', 'Circle'];
 
