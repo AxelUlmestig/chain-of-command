@@ -46,10 +46,7 @@ var compileCommands = function(commandString, language, inBounds) {
 var getFunction = function(language, character) {
 	var lowerCaseLetter = character.toLowerCase();
 	var f = language.functions_map[lowerCaseLetter];
-	if(!f) {
-		f = id;
-	}
-	return f;
+	return f || id;
 }
 
 /*
