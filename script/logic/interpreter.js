@@ -36,7 +36,7 @@ const LANGUAGES = {
 
 var compileCommands = function(commandString, language, inBounds) {
 	var commandArray = commandString.split('');
-	var commands = commandArray.map(letter => getFunction(language, letter));
+	var commands = commandArray.map(character => getFunction(language, character));
 	var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
 	return function(x) {
 		return new Promise(function(resolve, reject) {
@@ -47,9 +47,9 @@ var compileCommands = function(commandString, language, inBounds) {
 	};
 }
 
-//converts a command letter to a function, returns id function from util if no match is found
-var getFunction = function(language, letter) {
-	var lowerCaseLetter = letter.toLowerCase();
+//converts a command character to a function, returns id function from util if no match is found
+var getFunction = function(language, character) {
+	var lowerCaseLetter = character.toLowerCase();
 	var f = language.functions_map[lowerCaseLetter];
 	if(!f) {
 		f = id;
