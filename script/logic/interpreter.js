@@ -35,16 +35,11 @@ const LANGUAGES = {
 }
 
 var compileCommands = function(commandString, language, inBounds) {
-	return function(x) {
-		return new Promise(function(resolve, reject) {
-			var commandArray = commandString.split('');
-			var commands = commandArray.map(character => getFunction(language, character));
-			var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
-			var commandChain = createChain(constrainedCommands);
-			commandChain(x)
-			.then(resolve);
-		});
-	};
+	var commandArray = commandString.split('');
+	var commands = commandArray.map(character => getFunction(language, character));
+	var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
+	var commandChain = createChain(constrainedCommands);
+	return commandChain
 }
 
 //converts a command character to a function, returns id function from util if no match is found
