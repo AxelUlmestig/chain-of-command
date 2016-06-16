@@ -1,3 +1,7 @@
+/*
+ * Contains utility functions used in functional design.
+ */
+
 var chainFunctions = function(functions, arg) {
 	if(functions.length) {
 		var f = functions.pop();
