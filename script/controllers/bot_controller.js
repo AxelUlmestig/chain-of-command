@@ -30,9 +30,7 @@ app.controller('bot_controller', function($scope, state) {
 	 */
 	$scope.$watchGroup(['state.space'], function(newValue, oldValue) {
 		if($scope.state.language && $scope.state.space) {
-			var space = $scope.state.space;
-			var bot = initiateBotInSpace(space);
-			$scope.state.bot = bot;
+			$scope.resetBot();
 		}
 	}, true);
 
