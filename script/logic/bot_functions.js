@@ -36,6 +36,13 @@ var initiateBot = function(x, y) {
 	}
 }
 
+var initiateBotFromVector = function(vector, direction) {
+	return {
+		'position': cloneVector(vector),
+		'direction': direction || DIRECTIONS.NORTH
+	}
+}
+
 var moveBot = function(bot) {
 	return new Promise(function(resolve, reject){
 		var dir = bot.direction;
