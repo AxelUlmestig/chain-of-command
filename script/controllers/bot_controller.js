@@ -1,7 +1,30 @@
+/*
+ * Handles the IO of the bot from the web interface.
+ *
+ * Has dependencies to the following files/functions:
+ *
+ * 	script/controllers/initiate_app.js
+ * 		app
+ *
+ *	script/logic/bot_functions.js
+ *		showBot(bot)
+ *
+ *	script/logic/space_functions.js
+ *		initiateBotInSpace(space)
+ *
+ *	script/logic/interpreter.js
+ *		compileCommands(commandString, language, inBounds)
+ *
+ */
+
 app.controller('bot_controller', function($scope, state) {
 	$scope.state = state;
 	$scope.showBot = showBot;
 
+	/*
+	 * Keeps track if both state.language and state.space are defined.
+	 * When they are, it initiates a bot and adds it to state.bot
+	 */
 	$scope.$watch(function(){
 		return $scope.state.language && $scope.state.space;
 	}, function(newValue, oldValue) {
