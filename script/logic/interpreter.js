@@ -35,11 +35,11 @@ const LANGUAGES = {
 }
 
 var compileCommands = function(commandString, language, inBounds) {
-	var commandArray = commandString.split('');
-	var commands = commandArray.map(character => getFunction(language, character));
-	var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
 	return function(x) {
 		return new Promise(function(resolve, reject) {
+			var commandArray = commandString.split('');
+			var commands = commandArray.map(character => getFunction(language, character));
+			var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
 			var commandChain = createChain(constrainedCommands);
 			commandChain(x)
 			.then(resolve);
