@@ -13,60 +13,66 @@
 		<script src="script/controllers/lang_controller.js"></script>
 		<script src="script/controllers/space_controller.js"></script>
 		<script src="script/controllers/bot_controller.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<div ng-app="bot">
+		<div ng-app="bot" id="window">
 
-			<div ng-controller="lang_controller">
-				Language: <select ng-model="selectedLang" ng-change="selectedLangChanged(selectedLang)">
-					<option ng-repeat="lang in languages" value="{{lang.name}}">{{lang.name}}</option>
-				</select>
+			<div class="left_column">
+				<div ng-controller="lang_controller" id="language">
+					Language: <select ng-model="selectedLang" ng-change="selectedLangChanged(selectedLang)">
+						<option ng-repeat="lang in languages" value="{{lang.name}}">{{lang.name}}</option>
+					</select>
+				</div>
 			</div>
 
-			<div ng-controller="space_controller">
-				Space shape: <select ng-model="selectedShape">
-					<option ng-repeat="shape in shapes" value="{{shape}}">{{shape}}</option>
-				</select>
+			<div class="right_column">
+				<div ng-controller="space_controller" id="space">
+					Space shape: <select ng-model="selectedShape">
+						<option ng-repeat="shape in shapes" value="{{shape}}">{{shape}}</option>
+					</select>
 
-				<div ng-show="selectedShape == 'Rectangle'">
-					<form ng-submit="submitRectangle(rectangle)">
-						Bot start X: <input type="number" ng-model="rectangle.start.x" required>
-						Bot start Y: <input type="number" ng-model="rectangle.start.y" required>
-						<br>
-						Corner 1 X: <input type="number" ng-model="rectangle.corner1.x" required>
-						Corner 1 Y: <input type="number" ng-model="rectangle.corner1.y" required>
-						<br>
-						Corner 2 X: <input type="number" ng-model="rectangle.corner2.x" required>
-						Corner 2 Y: <input type="number" ng-model="rectangle.corner2.y" required>
-						<br>
-						<input type="submit" value="Submit">
-					</form>
-				</div>
+					<div ng-show="selectedShape == 'Rectangle'">
+						<form ng-submit="submitRectangle(rectangle)">
+							Bot start X: <input type="number" ng-model="rectangle.start.x" required>
+							Bot start Y: <input type="number" ng-model="rectangle.start.y" required>
+							<br>
+							Corner 1 X: <input type="number" ng-model="rectangle.corner1.x" required>
+							Corner 1 Y: <input type="number" ng-model="rectangle.corner1.y" required>
+							<br>
+							Corner 2 X: <input type="number" ng-model="rectangle.corner2.x" required>
+							Corner 2 Y: <input type="number" ng-model="rectangle.corner2.y" required>
+							<br>
+							<input type="submit" value="Submit">
+						</form>
+					</div>
 
-				<div ng-show="selectedShape == 'Circle'">
-					<form ng-submit="submitCircle(circle)">
-						Bot start X: <input type="number" ng-model="circle.start.x" required>
-						Bot start Y: <input type="number" ng-model="circle.start.y" required>
-						<br>
-						Center X: <input type="number" ng-model="circle.center.x" required>
-						Center Y: <input type="number" ng-model="circle.center.y" required>
-						<br>
-						Radius: <input type="number" ng-model="circle.radius" required>
-						<br>
-						<input type="submit" value="Submit">
-					</form>
+					<div ng-show="selectedShape == 'Circle'">
+						<form ng-submit="submitCircle(circle)">
+							Bot start X: <input type="number" ng-model="circle.start.x" required>
+							Bot start Y: <input type="number" ng-model="circle.start.y" required>
+							<br>
+							Center X: <input type="number" ng-model="circle.center.x" required>
+							Center Y: <input type="number" ng-model="circle.center.y" required>
+							<br>
+							Radius: <input type="number" ng-model="circle.radius" required>
+							<br>
+							<input type="submit" value="Submit">
+						</form>
+					</div>
 				</div>
 			</div>
 	
-			<div ng-controller="bot_controller" ng-show="state.bot">
+			<div ng-controller="bot_controller" ng-show="state.bot" id="bot">
 				<form ng-init="commandString = ''" ng-submit="sendCommand(commandString)">
 					<input type="text" ng-model="commandString">
+					<br>
 					<input type="submit" value="Submit">
 					<button type="button" ng-click="resetBot()">Reset</button>
 				</form>
 				<p>{{showBot()}}<p>
 			</div>
 		</div>
-	
 	</body>
 </html>
