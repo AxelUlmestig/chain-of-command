@@ -67,6 +67,14 @@ var turnBotLeft = function(bot) {
 	});
 }
 
+/*
+ * Gets a new direction as a function of the current direction that the bot has and the 'value'
+ * of the turn. Positive values means a clockwise turn, and negative values means a counter
+ * clockwise turn. Bigger values gives a strong turn.
+ *
+ * This function is dependent on the order in which the directions are added to the 
+ * DIRECTIONS object.
+ */
 var getNewDirection = function(bot, turnValue) {
 	var dirList = Object.keys(DIRECTIONS);
 	var dirListLen = dirList.length
