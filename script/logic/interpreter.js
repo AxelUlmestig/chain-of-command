@@ -1,3 +1,20 @@
+/*
+ * Contains functions related to compiling a command string to a function which 
+ * can manipulate a bot. It also defines the languages that are available.
+ *
+ * Has dependencies to the following files/functions:
+ *
+ * 	script/logic/bot_functions.js
+ * 		moveBot(bot)
+ * 		turnBotRight(bot)
+ * 		turnBotLeft(bot)
+ *
+ * 	script/logic/util.js
+ * 		createChain(functions)
+ * 		id(x)
+ *
+ */
+
 const LANGUAGES = {
 	'EN': {
 		'name': 'EN',
@@ -23,7 +40,7 @@ var compileCommands = function(commandString, language, inBounds) {
 	var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
 	return function(x) {
 		return new Promise(function(resolve, reject) {
-			var commandChain = createChain(constrainedCommands); //createChain is defined in scripts/util.js
+			var commandChain = createChain(constrainedCommands);
 			commandChain(x)
 			.then(resolve);
 		});
@@ -35,15 +52,15 @@ var getFunction = function(language, letter) {
 	var lowerCaseLetter = letter.toLowerCase();
 	var f = language.functions_map[lowerCaseLetter];
 	if(!f) {
-		f = id; //id function from script/util.js
+		f = id;
 	}
 	return f;
 }
 
 /*
-A decorator which executes a command and then checks if InBounds is true. 
-If the result is not inBounds then it will return the original function input.
-*/
+ * A decorator that executes a command and then checks if withinConstraints is true. 
+ * If the result is not within the constraints then it will return the original function input.
+ */
 var constrainCommand = function(withinConstraints, command) {
 	return function(x) {
 		return new Promise(function(resolve, reject){
