@@ -1,7 +1,7 @@
 const DIRECTIONS = {
 	'NORTH': {
 		'name': 'NORTH',
-		'value': createVector(0, 1)
+		'value': createVector(0, -1)
 	},
 	'EAST': {
 		'name': 'EAST',
@@ -9,7 +9,7 @@ const DIRECTIONS = {
 	},
 	'SOUTH': {
 		'name': 'SOUTH',
-		'value': createVector(0, -1)
+		'value': createVector(0, 1)
 	},
 	'WEST': {
 		'name': 'WEST',

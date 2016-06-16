@@ -132,7 +132,7 @@ describe('bot functions', function(){
 			var bot = initiateBot(0, 0);
 			moveBot(bot)
 			.then(function(bot) {
-				expect(bot.position).to.deep.equal(createVector(0, 1));
+				expect(bot.position).to.deep.equal(createVector(0, -1));
 				done();
 			})
 			.catch(done);
@@ -156,7 +156,7 @@ describe('bot functions', function(){
 			.then(turnBotRight)
 			.then(moveBot)
 			.then(function(bot) {
-				expect(bot.position).to.deep.equal(createVector(0, -1));
+				expect(bot.position).to.deep.equal(createVector(0, 1));
 				done();
 			})
 			.catch(done);
@@ -239,7 +239,7 @@ describe('interpreter', function() {
 			var f = getFunction(lang, letter);
 			f(bot)
 			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, 1)); //expect one step north from (0, 0) -> (0, 1)
+				expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 				done();
 			})
 			.catch(done);
@@ -252,7 +252,7 @@ describe('interpreter', function() {
 			var f = getFunction(lang, letter);
 			f(bot)
 			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, 1)); //expect one step north from (0, 0) -> (0, 1)
+				expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 				done();
 			})
 			.catch(done);
@@ -278,7 +278,7 @@ describe('interpreter', function() {
 			var f = getFunction(lang, letter);
 			f(bot)
 			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, 1)); //expect one step north from (0, 0) -> (0, 1)
+				expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 				done();
 			})
 			.catch(done);
@@ -302,7 +302,7 @@ describe('interpreter', function() {
 		it('moveBot constrained', function(done){
 			var bot = initiateBot(0, 0);
 			var command = moveBot;
-			var inConstraints = bot => bot.position.y < 1;
+			var inConstraints = bot => bot.position.y > -1;
 			var constrainedCommand = constrainCommand(inConstraints, command);
 			constrainedCommand(bot)
 			.then(function(newBot){
@@ -319,7 +319,7 @@ describe('interpreter', function() {
 			var constrainedCommand = constrainCommand(inConstraints, command);
 			constrainedCommand(bot)
 			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, 1));
+				expect(newBot.position).to.deep.equal(createVector(0, -1));
 				done();
 			})
 			.catch(done);
@@ -335,7 +335,7 @@ describe('interpreter', function() {
 			var executeCommands = compileCommands(commandString, lang, inBound);
 			executeCommands(bot)
 			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(2, 1));
+				expect(movedBot.position).to.deep.equal(createVector(2, -1));
 				done();
 			})
 			.catch(done);
@@ -349,7 +349,7 @@ describe('interpreter', function() {
 			var executeCommands = compileCommands(commandString, lang, inBound);
 			executeCommands(bot)
 			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(1, 1));
+				expect(movedBot.position).to.deep.equal(createVector(1, -1));
 				done();
 			})
 			.catch(done);
@@ -363,7 +363,7 @@ describe('interpreter', function() {
 			var executeCommands = compileCommands(commandString, lang, inBound);
 			executeCommands(bot)
 			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(2, 1));
+				expect(movedBot.position).to.deep.equal(createVector(2, -1));
 				done();
 			})
 			.catch(done);
@@ -404,10 +404,10 @@ describe('space functions', function(){
 
 	it('createRectangularSpace', function(done){
 		var xCorner1 = 0;
-		var yCorner1 = 3;
+		var yCorner1 = 4;
 
 		var xCorner2 = 10;
-		var yCorner2 = 6;
+		var yCorner2 = 7;
 
 		var xStart = 5;
 		var yStart = 5;
@@ -422,14 +422,14 @@ describe('space functions', function(){
 		.then(function(movedBot){
 			/*
 			 * expected path:
-			 * 	forward, north: 		(5, 5, N) -> (5, 6, N)
-			 * 	forward, north (hit wall): 	(5, 6, N) -> (5, 6, N)
-			 * 	left:				(5, 6, N) -> (5, 6, W)
-			 * 	left:				(5, 6, W) -> (5, 6, S)
-			 * 	forward, south:			(5, 6, S) -> (5, 5, S)
-			 * 	forward, south: 		(5, 5, S) -> (5, 4, S)
+			 * 	forward, north: 		(5, 5, N) -> (5, 4, N)
+			 * 	forward, north (hit wall): 	(5, 4, N) -> (5, 4, N)
+			 * 	left:				(5, 4, N) -> (5, 4, W)
+			 * 	left:				(5, 4, W) -> (5, 4, S)
+			 * 	forward, south:			(5, 4, S) -> (5, 5, S)
+			 * 	forward, south: 		(5, 5, S) -> (5, 6, S)
 			 */	
-			var expectedPosition = createVector(5, 4);
+			var expectedPosition = createVector(5, 6);
 			expect(movedBot.position).to.deep.equal(expectedPosition);
 			done();
 		})
@@ -438,7 +438,7 @@ describe('space functions', function(){
 
 	it('createCircularSpace', function(done){
 		var xSpaceCenter = 0;
-		var ySpaceCenter = 3;
+		var ySpaceCenter = 5;
 		var radius = 3;
 
 		var xStart = 1;
@@ -456,13 +456,13 @@ describe('space functions', function(){
 			 * expected path:
 			 * 	right: 				(1, 4, N) -> (1, 4, E)
 			 * 	right: 				(1, 4, E) -> (1, 4, S)
-			 * 	forward, south: 		(1, 4, S) -> (1, 3, S)
-			 * 	left:				(1, 3, S) -> (1, 3, E)
-			 * 	forward, east: 			(1, 3, E) -> (2, 3, E)
-			 * 	forward, east: 			(2, 3, E) -> (3, 3, E)
-			 * 	forward, east (hit wall): 	(3, 3, E) -> (3, 3, E)
+			 * 	forward, south: 		(1, 4, S) -> (1, 5, S)
+			 * 	left:				(1, 5, S) -> (1, 5, E)
+			 * 	forward, east: 			(1, 5, E) -> (2, 5, E)
+			 * 	forward, east: 			(2, 5, E) -> (3, 5, E)
+			 * 	forward, east (hit wall): 	(3, 5, E) -> (3, 5, E)
 			 */	
-			var expectedPosition = createVector(3, 3);
+			var expectedPosition = createVector(3, 5);
 			expect(movedBot.position).to.deep.equal(expectedPosition);
 			done();
 		})
