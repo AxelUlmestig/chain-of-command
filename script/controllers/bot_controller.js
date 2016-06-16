@@ -34,6 +34,16 @@ app.controller('bot_controller', function($scope, state) {
 		}
 	}, true);
 
+	/*
+	 * Initiates a bot if the space and language are ready but there is 
+	 * no bot.
+	 */
+	$scope.$watchGroup(['state.language'], function(newValue, oldValue) {
+		if($scope.state.language && $scope.state.space && !$scope.state.bot) {
+			$scope.resetBot();
+		}
+	}, true);
+
 	$scope.sendCommand = function(commandString) {
 		var space = $scope.state.space;
 		var lang = $scope.state.language;
