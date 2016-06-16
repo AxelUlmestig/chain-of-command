@@ -1,3 +1,6 @@
+/*
+ * Contains functions related to basic vector algebra.
+ */
 var createVector = function(x, y) {
 	return {
 		'x': x, 
