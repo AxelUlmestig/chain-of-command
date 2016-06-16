@@ -30,14 +30,7 @@ const DIRECTIONS = {
 	}
 }
 
-var initiateBot = function(x, y) {
-	return {
-		'position': createVector(x, y),
-		'direction': DIRECTIONS.NORTH
-	}
-}
-
-var initiateBotFromVector = function(vector, direction) {
+var initiateBot = function(vector, direction) {
 	return {
 		'position': cloneVector(vector),
 		'direction': direction || DIRECTIONS.NORTH
@@ -48,7 +41,7 @@ var moveBot = function(bot) {
 	return new Promise(function(resolve, reject){
 		var dir = bot.direction;
 		var pos = addVectors(bot.position, dir.value);
-		var newBot = initiateBotFromVector(pos, dir);
+		var newBot = initiateBot(pos, dir);
 		resolve(newBot);
 	});
 }
@@ -56,7 +49,7 @@ var moveBot = function(bot) {
 var turnBotRight = function(bot) {
 	return new Promise(function(resolve, reject){
 		var newDir = getNewDirection(bot, 1);
-		var newBot = initiateBotFromVector(bot.position, newDir);
+		var newBot = initiateBot(bot.position, newDir);
 		resolve(newBot);
 	});
 }
@@ -64,7 +57,7 @@ var turnBotRight = function(bot) {
 var turnBotLeft = function(bot) {
 	return new Promise(function(resolve, reject){
 		var newDir = getNewDirection(bot, -1);
-		var newBot = initiateBotFromVector(bot.position, newDir);
+		var newBot = initiateBot(bot.position, newDir);
 		resolve(newBot);
 	});
 }

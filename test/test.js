@@ -67,7 +67,8 @@ describe('bot functions', function(){
 		it('position', function(){
 			var x = -3;
 			var y = 2;
-			var bot = initiateBot(x, y);
+			var position = createVector(x, y);
+			var bot = initiateBot(position);
 			expect(bot.position.x).to.equal(x);
 			expect(bot.position.y).to.equal(y);
 		});
@@ -75,14 +76,15 @@ describe('bot functions', function(){
 		it('position', function(){
 			var x = -3;
 			var y = 2;
-			var bot = initiateBot(x, y);
+			var position = createVector(x, y);
+			var bot = initiateBot(position);
 			expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
 		});
 	});
 
 	describe('movement', function() {
 		it('turn left', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotLeft(bot)
 			.then(function(bot) {
 				expect(bot.direction.name).to.equal(DIRECTIONS.WEST.name);
@@ -92,7 +94,7 @@ describe('bot functions', function(){
 		});
 
 		it('turn right', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotRight(bot)
 			.then(function(bot) {
 				expect(bot.direction.name).to.equal(DIRECTIONS.EAST.name);
@@ -102,7 +104,7 @@ describe('bot functions', function(){
 		});
 
 		it('turn right x4', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotRight(bot)
 			.then(turnBotRight)
 			.then(turnBotRight)
@@ -116,7 +118,7 @@ describe('bot functions', function(){
 
 
 		it('turn left x4', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotLeft(bot)
 			.then(turnBotLeft)
 			.then(turnBotLeft)
@@ -129,7 +131,7 @@ describe('bot functions', function(){
 		});
 
 		it('move forward, north', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			moveBot(bot)
 			.then(function(bot) {
 				expect(bot.position).to.deep.equal(createVector(0, -1));
@@ -139,7 +141,7 @@ describe('bot functions', function(){
 		});
 
 		it('move forward, east', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotRight(bot)
 			.then(moveBot)
 			.then(function(bot) {
@@ -151,7 +153,7 @@ describe('bot functions', function(){
 
 
 		it('move forward, south', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotRight(bot)
 			.then(turnBotRight)
 			.then(moveBot)
@@ -163,7 +165,7 @@ describe('bot functions', function(){
 		});
 
 		it('move forward, west', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			turnBotLeft(bot)
 			.then(moveBot)
 			.then(function(bot) {
@@ -174,7 +176,7 @@ describe('bot functions', function(){
 		});
 
 		it('getNewDirection', function() {
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var newDir = getNewDirection(bot, -1);
 			expect(newDir.name).to.equal(DIRECTIONS.WEST.name);
 		});
@@ -183,19 +185,19 @@ describe('bot functions', function(){
 
 	describe('show bot', function(){
 		it('(0, 0, N)', function(){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var printedBot = showBot(bot);
 			expect(printedBot).to.deep.equal('(0, 0, N)');
 		});
 
 		it('(7, 1, N)', function(){
-			var bot = initiateBot(7, 1);
+			var bot = initiateBot(createVector(7, 1));
 			var printedBot = showBot(bot);
 			expect(printedBot).to.deep.equal('(7, 1, N)');
 		});
 
 		it('(3, 4, E)', function(done){
-			var bot = initiateBot(3, 4);
+			var bot = initiateBot(createVector(3, 4));
 			turnBotRight(bot)
 			.then(function(turnedBot){
 				var printedBot = showBot(turnedBot);
@@ -206,7 +208,7 @@ describe('bot functions', function(){
 		});
 
 		it('(-2, 5, S)', function(done){
-			var bot = initiateBot(-2, 5);
+			var bot = initiateBot(createVector(-2, 5));
 			turnBotRight(bot)
 			.then(turnBotRight)
 			.then(function(turnedBot){
@@ -218,7 +220,7 @@ describe('bot functions', function(){
 		});
 
 		it('(0, 3, W)', function(done) {
-			var bot = initiateBot(0, 3);
+			var bot = initiateBot(createVector(0, 3));
 			turnBotLeft(bot)
 			.then(function(turnedBot){
 				var printedBot = showBot(turnedBot);
@@ -233,7 +235,7 @@ describe('bot functions', function(){
 describe('interpreter', function() {
 	describe('getFunction', function() {
 		it('english f', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var letter = 'f';
 			var lang = LANGUAGES.EN
 			var f = getFunction(lang, letter);
@@ -246,7 +248,7 @@ describe('interpreter', function() {
 		});
 
 		it('english F', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var letter = 'F';
 			var lang = LANGUAGES.EN
 			var f = getFunction(lang, letter);
@@ -259,7 +261,7 @@ describe('interpreter', function() {
 		});
 
 		it('swedish f', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var letter = 'f';
 			var lang = LANGUAGES.SE
 			var f = getFunction(lang, letter);
@@ -272,7 +274,7 @@ describe('interpreter', function() {
 		});
 
 		it('swedish g', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var letter = 'g';
 			var lang = LANGUAGES.SE
 			var f = getFunction(lang, letter);
@@ -285,7 +287,7 @@ describe('interpreter', function() {
 		});
 
 		it('swedish h', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var letter = 'h';
 			var lang = LANGUAGES.SE
 			var f = getFunction(lang, letter);
@@ -300,7 +302,7 @@ describe('interpreter', function() {
 
 	describe('constrainCommand', function() {
 		it('moveBot constrained', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var command = moveBot;
 			var inConstraints = bot => bot.position.y > -1;
 			var constrainedCommand = constrainCommand(inConstraints, command);
@@ -313,7 +315,7 @@ describe('interpreter', function() {
 		});
 
 		it('moveBot unconstrained', function(done){
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var command = moveBot;
 			var inConstraints = bot => bot.position.x < 1;
 			var constrainedCommand = constrainCommand(inConstraints, command);
@@ -328,7 +330,7 @@ describe('interpreter', function() {
 
 	describe('compileCommands', function() {
 		it('unbound, english', function(done) {
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
 			var inBound = bot => true;
@@ -342,7 +344,7 @@ describe('interpreter', function() {
 		});
 
 		it('bound, english', function(done) {
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
 			var inBound = bot => bot.position.x < 2;
@@ -356,7 +358,7 @@ describe('interpreter', function() {
 		});
 
 		it('unbound, swedish', function(done) {
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'GFhGg'; //forward, (english forward), right, forward, forward
 			var lang = LANGUAGES.SE;
 			var inBound = bot => true;
@@ -370,7 +372,7 @@ describe('interpreter', function() {
 		});
 
 		it('empty command', function(done) {
-			var bot = initiateBot(0, 0);
+			var bot = initiateBot(createVector(0, 0));
 			var commandString = '';
 			var lang = LANGUAGES.SE;
 			var inBound = bot => true;

@@ -11,7 +11,7 @@
  * 		getVectorDistance(v1, v2)
  *
  * 	script/logic/bot_functions.js
- *		initiateBot(x, y)
+ *		initiateBot(positionVector[, direction])
  * 		
  */
 
@@ -54,6 +54,6 @@ var createRectangularSpace = function(xStart, yStart, xCorner1, yCorner1, xCorne
 
 var initiateBotInSpace = function(space) {
 	var startPosition = space.start_position;
-	var bot = initiateBot(startPosition.x, startPosition.y);
+	var bot = initiateBot(startPosition);
 	return bot;
 }
