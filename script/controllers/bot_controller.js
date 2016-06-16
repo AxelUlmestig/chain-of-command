@@ -22,16 +22,14 @@ app.controller('bot_controller', function($scope, state) {
 	$scope.showBot = showBot;
 
 	/*
-	 * Keeps track if both state.language and state.space are defined.
-	 * When they are, it initiates a bot and adds it to state.bot
+	 * Keeps track of state.space and resets the bot if state.space 
+	 * is updated and both state.space and state.language are defined.
+	 *
+	 * $watchGroup is used because $watch doesn't seem to trigger when
+	 * a value is updated in the space but not the shape.
 	 */
-	$scope.$watch(function(){
-		return $scope.state.language && $scope.state.space;
-	}, function(newValue, oldValue) {
-		if(newValue === oldValue) { //to prevent it from firing on startup
-			return;
-		}
-		if(!$scope.state.bot) {
+	$scope.$watchGroup(['state.space'], function(newValue, oldValue) {
+		if($scope.state.language && $scope.state.space) {
 			var space = $scope.state.space;
 			var bot = initiateBotInSpace(space);
 			$scope.state.bot = bot;
