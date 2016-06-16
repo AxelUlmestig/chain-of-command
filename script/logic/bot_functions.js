@@ -7,6 +7,7 @@
  * 	script/logic/vector_functions.js
  * 		createVector(x, y)
  * 		addVectors(v1, v2)
+ * 		cloneVector(v)
  *
  */
 
@@ -47,30 +48,24 @@ var moveBot = function(bot) {
 	return new Promise(function(resolve, reject){
 		var dir = bot.direction;
 		var pos = addVectors(bot.position, dir.value);
-		resolve({
-			'position': pos,
-			'direction': dir
-		});
+		var newBot = initiateBotFromVector(pos, dir);
+		resolve(newBot);
 	});
 }
 
 var turnBotRight = function(bot) {
 	return new Promise(function(resolve, reject){
 		var newDir = getNewDirection(bot, 1);
-		resolve({
-			'position': bot.position,
-			'direction': newDir
-		});
+		var newBot = initiateBotFromVector(bot.position, newDir);
+		resolve(newBot);
 	});
 }
 
 var turnBotLeft = function(bot) {
 	return new Promise(function(resolve, reject){
 		var newDir = getNewDirection(bot, -1);
-		resolve({
-			'position': bot.position,
-			'direction': newDir
-		});
+		var newBot = initiateBotFromVector(bot.position, newDir);
+		resolve(newBot);
 	});
 }
 
