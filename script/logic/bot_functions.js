@@ -1,3 +1,15 @@
+/*
+ * Contains functions related to creating and initating bots. It also defines
+ * the cardinal directions that the bot uses to navigate. 
+ *
+ * Has dependencies to the following files/functions:
+ *
+ * 	script/logic/vector_functions.js
+ * 		createVector(x, y)
+ * 		addVectors(v1, v2)
+ *
+ */
+
 const DIRECTIONS = {
 	'NORTH': {
 		'name': 'NORTH',
