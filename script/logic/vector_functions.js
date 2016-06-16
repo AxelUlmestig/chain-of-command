@@ -30,3 +30,10 @@ var inRectangle = function(v1, v2, v3) {
 	var inY = v1.y <= Math.max(v2.y, v3.y) && v1.y >= Math.min(v2.y, v3.y);
 	return inX && inY;
 }
+
+var cloneVector = function(v) {
+	return {
+		'x': v.x,
+		'y': v.y
+	}
+}
