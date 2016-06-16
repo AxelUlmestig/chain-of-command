@@ -1,5 +1,6 @@
 app.controller('bot_controller', function($scope, state) {
 	$scope.state = state;
+	$scope.showBot = showBot;
 
 	$scope.$watch(function(){
 		return $scope.state.language && $scope.state.space;
@@ -13,14 +14,6 @@ app.controller('bot_controller', function($scope, state) {
 			$scope.state.bot = bot;
 		}
 	}, true);
-
-	$scope.showBot = function() {
-		if($scope.state.bot){
-			return showBot($scope.state.bot);
-		} else {
-			return "";
-		}
-	}
 
 	$scope.sendCommand = function(commandString) {
 		var space = $scope.state.space;
