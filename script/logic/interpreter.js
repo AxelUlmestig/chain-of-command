@@ -55,15 +55,8 @@ var getFunction = function(language, character) {
  */
 var constrainCommand = function(withinConstraints, command) {
 	return function(x) {
-		return new Promise(function(resolve, reject){
-			command(x)
-			.then(function(y){
-				if(withinConstraints(y)) {
-					resolve(y);
-				} else {
-					resolve(x);
-				}
-			});
-		})
+		var y = command(x);
+		if(withinConstraints(y)) return y;
+		return x;
 	}
 }

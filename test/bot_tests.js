@@ -21,96 +21,64 @@ describe('bot functions', function(){
 	});
 
 	describe('movement', function() {
-		it('turn left', function(done){
+		it('turn left', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotLeft(bot)
-			.then(function(bot) {
-				expect(bot.direction.name).to.equal(DIRECTIONS.WEST.name);
-				done();
-			})
-			.catch(done);
+			var bot = turnBotLeft(bot);
+			expect(bot.direction.name).to.equal(DIRECTIONS.WEST.name);
 		});
 
-		it('turn right', function(done){
+		it('turn right', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotRight(bot)
-			.then(function(bot) {
-				expect(bot.direction.name).to.equal(DIRECTIONS.EAST.name);
-				done();
-			})
-			.catch(done);
+			var bot = turnBotRight(bot);
+			expect(bot.direction.name).to.equal(DIRECTIONS.EAST.name);
 		});
 
-		it('turn right x4', function(done){
+		it('turn right x4', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotRight(bot)
-			.then(turnBotRight)
-			.then(turnBotRight)
-			.then(turnBotRight)
-			.then(function(bot) {
-				expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
-				done();
-			})
-			.catch(done);
+			bot = turnBotRight(bot);
+			bot = turnBotRight(bot);
+			bot = turnBotRight(bot);
+			bot = turnBotRight(bot);
+			expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
 		});
 
 
-		it('turn left x4', function(done){
+		it('turn left x4', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotLeft(bot)
-			.then(turnBotLeft)
-			.then(turnBotLeft)
-			.then(turnBotLeft)
-			.then(function(bot) {
-				expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
-				done();
-			})
-			.catch(done);
+			bot = turnBotLeft(bot);
+			bot = turnBotLeft(bot);
+			bot = turnBotLeft(bot);
+			bot = turnBotLeft(bot);
+			expect(bot.direction.name).to.equal(DIRECTIONS.NORTH.name);
 		});
 
-		it('move forward, north', function(done){
+		it('move forward, north', function(){
 			var bot = initiateBot(createVector(0, 0));
-			moveBot(bot)
-			.then(function(bot) {
-				expect(bot.position).to.deep.equal(createVector(0, -1));
-				done();
-			})
-			.catch(done);
+			bot = moveBot(bot);
+			expect(bot.position).to.deep.equal(createVector(0, -1));
 		});
 
-		it('move forward, east', function(done){
+		it('move forward, east', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotRight(bot)
-			.then(moveBot)
-			.then(function(bot) {
-				expect(bot.position).to.deep.equal(createVector(1, 0));
-				done();
-			})
-			.catch(done);
+			bot = turnBotRight(bot);
+			bot = moveBot(bot);
+			expect(bot.position).to.deep.equal(createVector(1, 0));
 		});
 
 
-		it('move forward, south', function(done){
+		it('move forward, south', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotRight(bot)
-			.then(turnBotRight)
-			.then(moveBot)
-			.then(function(bot) {
-				expect(bot.position).to.deep.equal(createVector(0, 1));
-				done();
-			})
-			.catch(done);
+			bot = turnBotRight(bot);
+			bot = turnBotRight(bot);
+			bot = moveBot(bot);
+			expect(bot.position).to.deep.equal(createVector(0, 1));
 		});
 
-		it('move forward, west', function(done){
+		it('move forward, west', function(){
 			var bot = initiateBot(createVector(0, 0));
-			turnBotLeft(bot)
-			.then(moveBot)
-			.then(function(bot) {
-				expect(bot.position).to.deep.equal(createVector(-1, 0));
-				done();
-			})
-			.catch(done);
+			bot = turnBotLeft(bot);
+			bot = moveBot(bot);
+			expect(bot.position).to.deep.equal(createVector(-1, 0));
 		});
 
 		it('getNewDirection', function() {
@@ -134,38 +102,26 @@ describe('bot functions', function(){
 			expect(printedBot).to.deep.equal('(7, 1, N)');
 		});
 
-		it('(3, 4, E)', function(done){
+		it('(3, 4, E)', function(){
 			var bot = initiateBot(createVector(3, 4));
-			turnBotRight(bot)
-			.then(function(turnedBot){
-				var printedBot = showBot(turnedBot);
-				expect(printedBot).to.deep.equal('(3, 4, E)');
-				done();
-			})
-			.catch(done);
+			bot = turnBotRight(bot);
+			var printedBot = showBot(bot);
+			expect(printedBot).to.deep.equal('(3, 4, E)');
 		});
 
-		it('(-2, 5, S)', function(done){
+		it('(-2, 5, S)', function(){
 			var bot = initiateBot(createVector(-2, 5));
-			turnBotRight(bot)
-			.then(turnBotRight)
-			.then(function(turnedBot){
-				var printedBot = showBot(turnedBot);
-				expect(printedBot).to.deep.equal('(-2, 5, S)');
-				done();
-			})
-			.catch(done);
+			bot = turnBotRight(bot);
+			bot = turnBotRight(bot);
+			var printedBot = showBot(bot);
+			expect(printedBot).to.deep.equal('(-2, 5, S)');
 		});
 
-		it('(0, 3, W)', function(done) {
+		it('(0, 3, W)', function() {
 			var bot = initiateBot(createVector(0, 3));
-			turnBotLeft(bot)
-			.then(function(turnedBot){
-				var printedBot = showBot(turnedBot);
-				expect(printedBot).to.deep.equal('(0, 3, W)');
-				done();
-			})
-			.catch(done);
+			var turnedBot = turnBotLeft(bot);
+			var printedBot = showBot(turnedBot);
+			expect(printedBot).to.deep.equal('(0, 3, W)');
 		});
 	});
 });

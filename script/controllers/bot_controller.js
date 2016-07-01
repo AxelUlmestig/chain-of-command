@@ -50,11 +50,7 @@ app.controller('bot_controller', function($scope, state) {
 		var command = compileCommands(commandString, lang, space.contains);
 
 		var bot = $scope.state.bot;
-		command(bot)
-		.then(function(movedBot){
-			$scope.state.bot = movedBot;
-			$scope.$apply();
-		});
+		$scope.state.bot = command(bot)
 	}
 
 	$scope.resetBot = function() {

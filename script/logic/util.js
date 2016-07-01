@@ -5,11 +5,9 @@
 var chainFunctions = function(functions, arg) {
 	if(functions.length) {
 		var f = functions.pop();
-		return chainFunctions(functions, arg).then(f);
+		return f(chainFunctions(functions, arg));
 	} else {
-		return new Promise(function(resolve, reject) {
-			resolve(arg)
-		});
+		return arg;
 	}
 }
 
@@ -20,8 +18,4 @@ var createChain = function(arr) {
 }
 
 //identity function, id(x) = x
-var id = function(x) {
-	return new Promise(function(resolve, reject) {
-		resolve(x);
-	});
-}
+var id = x => x;

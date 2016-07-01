@@ -2,155 +2,111 @@ var expect = require('chai').expect;
 
 describe('interpreter', function() {
 	describe('getFunction', function() {
-		it('english f', function(done){
+		it('english f', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'f';
 			var lang = LANGUAGES.EN
 			var f = getFunction(lang, letter);
-			f(bot)
-			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
-				done();
-			})
-			.catch(done);
+			var newBot = f(bot)
+			expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 		});
 
-		it('english F', function(done){
+		it('english F', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'F';
 			var lang = LANGUAGES.EN
 			var f = getFunction(lang, letter);
-			f(bot)
-			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
-				done();
-			})
-			.catch(done);
+			var newBot = f(bot);
+			expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 		});
 
-		it('swedish f', function(done){
+		it('swedish f', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'f';
 			var lang = LANGUAGES.SE
 			var f = getFunction(lang, letter);
-			f(bot)
-			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, 0)); //expect no movement, it should stay at the origin
-				done();
-			})
-			.catch(done);
+			var newBot = f(bot);
+			expect(newBot.position).to.deep.equal(createVector(0, 0)); //expect no movement, it should stay at the origin
 		});
 
-		it('swedish g', function(done){
+		it('swedish g', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'g';
 			var lang = LANGUAGES.SE
 			var f = getFunction(lang, letter);
-			f(bot)
-			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
-				done();
-			})
-			.catch(done);
+			var newBot = f(bot);
+			expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 		});
 
-		it('swedish h', function(done){
+		it('swedish h', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'h';
 			var lang = LANGUAGES.SE
 			var f = getFunction(lang, letter);
-			f(bot)
-			.then(function(newBot){
-				expect(newBot.direction).to.equal(DIRECTIONS.EAST); 
-				done();
-			})
-			.catch(done);
+			var newBot = f(bot);
+			expect(newBot.direction).to.equal(DIRECTIONS.EAST); 
 		});
 	});
 
 	describe('constrainCommand', function() {
-		it('moveBot constrained', function(done){
+		it('moveBot constrained', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var command = moveBot;
 			var inConstraints = bot => bot.position.y > -1;
 			var constrainedCommand = constrainCommand(inConstraints, command);
-			constrainedCommand(bot)
-			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, 0));
-				done();
-			})
-			.catch(done);
+			var newBot = constrainedCommand(bot);
+			expect(newBot.position).to.deep.equal(createVector(0, 0));
 		});
 
-		it('moveBot unconstrained', function(done){
+		it('moveBot unconstrained', function(){
 			var bot = initiateBot(createVector(0, 0));
 			var command = moveBot;
 			var inConstraints = bot => bot.position.x < 1;
 			var constrainedCommand = constrainCommand(inConstraints, command);
-			constrainedCommand(bot)
-			.then(function(newBot){
-				expect(newBot.position).to.deep.equal(createVector(0, -1));
-				done();
-			})
-			.catch(done);
+			var newBot = constrainedCommand(bot);
+			expect(newBot.position).to.deep.equal(createVector(0, -1));
 		});
 	});
 
 	describe('compileCommands', function() {
-		it('unbound, english', function(done) {
+		it('unbound, english', function() {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
 			var inBound = bot => true;
 			var executeCommands = compileCommands(commandString, lang, inBound);
-			executeCommands(bot)
-			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(2, -1));
-				done();
-			})
-			.catch(done);
+			var movedBot = executeCommands(bot);
+			expect(movedBot.position).to.deep.equal(createVector(2, -1));
 		});
 
-		it('bound, english', function(done) {
+		it('bound, english', function() {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
 			var inBound = bot => bot.position.x < 2;
 			var executeCommands = compileCommands(commandString, lang, inBound);
-			executeCommands(bot)
-			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(1, -1));
-				done();
-			})
-			.catch(done);
+			var movedBot = executeCommands(bot);
+			expect(movedBot.position).to.deep.equal(createVector(1, -1));
 		});
 
-		it('unbound, swedish', function(done) {
+		it('unbound, swedish', function() {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'GFhGg'; //forward, (english forward), right, forward, forward
 			var lang = LANGUAGES.SE;
 			var inBound = bot => true;
 			var executeCommands = compileCommands(commandString, lang, inBound);
-			executeCommands(bot)
-			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(2, -1));
-				done();
-			})
-			.catch(done);
+			var movedBot = executeCommands(bot);
+			expect(movedBot.position).to.deep.equal(createVector(2, -1));
 		});
 
-		it('empty command', function(done) {
+		it('empty command', function() {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = '';
 			var lang = LANGUAGES.SE;
 			var inBound = bot => true;
 			var executeCommands = compileCommands(commandString, lang, inBound);
-			executeCommands(bot)
-			.then(function(movedBot){
-				expect(movedBot.position).to.deep.equal(createVector(0, 0));
-				done();
-			})
-			.catch(done);
+			var movedBot = executeCommands(bot)
+			expect(movedBot.position).to.deep.equal(createVector(0, 0));
 		})
 	});
 })

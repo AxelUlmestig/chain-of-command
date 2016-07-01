@@ -38,28 +38,22 @@ var initiateBot = function(vector, direction) {
 }
 
 var moveBot = function(bot) {
-	return new Promise(function(resolve, reject){
-		var dir = bot.direction;
-		var pos = addVectors(bot.position, dir.value);
-		var newBot = initiateBot(pos, dir);
-		resolve(newBot);
-	});
+	var dir = bot.direction;
+	var pos = addVectors(bot.position, dir.value);
+	var newBot = initiateBot(pos, dir);
+	return newBot;
 }
 
 var turnBotRight = function(bot) {
-	return new Promise(function(resolve, reject){
-		var newDir = getNewDirection(bot, 1);
-		var newBot = initiateBot(bot.position, newDir);
-		resolve(newBot);
-	});
+	var newDir = getNewDirection(bot, 1);
+	var newBot = initiateBot(bot.position, newDir);
+	return newBot;
 }
 
 var turnBotLeft = function(bot) {
-	return new Promise(function(resolve, reject){
-		var newDir = getNewDirection(bot, -1);
-		var newBot = initiateBot(bot.position, newDir);
-		resolve(newBot);
-	});
+	var newDir = getNewDirection(bot, -1);
+	var newBot = initiateBot(bot.position, newDir);
+	return newBot;
 }
 
 /*
