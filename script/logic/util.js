@@ -3,12 +3,8 @@
  */
 
 var chainFunctions = function(functions, arg) {
-	if(functions.length) {
-		var f = functions.pop();
-		return f(chainFunctions(functions, arg));
-	} else {
-		return arg;
-	}
+	var result = functions.reduce((mem, f) => f(mem), arg);
+	return result;
 }
 
 var createChain = function(arr) {
