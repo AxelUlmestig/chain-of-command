@@ -38,11 +38,6 @@ DESIGN DECISIONS
 
 	*The controllers logic uses Angular to interact with the html.
 
-	*I implemented the functions that move the bot using promises. This was because 
-	I felt that it would be easier to chain those functions together and I am not 100%
-	sure when javascript starts behaving asynchronously. In hindsight this might 
-	have been unnecessary.
-
 	*I've mostly written javascript using node.js before and I am not quite sure of
 	how to properly handle the imports and dependencies. Currently all the .js files
 	are loaded in the index.html page. I would have wanted some scoping of the 
