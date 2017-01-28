@@ -30,12 +30,10 @@ const DIRECTIONS = {
     }
 }
 
-const initiateBot = (vector, direction) => {
-    return {
-        'position': cloneVector(vector),
-        'direction': direction || DIRECTIONS.NORTH
-    }
-}
+const initiateBot = (vector, direction) => ({
+    'position': cloneVector(vector),
+    'direction': direction || DIRECTIONS.NORTH
+})
 
 const moveBot = bot => {
     const dir = bot.direction;
