@@ -36,14 +36,14 @@ const LANGUAGES = {
 
 const compileCommands = (commandString, language, inBounds) => {
     const commandArray = commandString.split('');
-    const commands = commandArray.map(character => getFunction(language, character));
+    const commands = commandArray.map(getFunction(language));
     const constrainedCommands = commands.map(constrainCommand(inBounds));
     const commandChain = chainFunctions(constrainedCommands);
     return commandChain
 }
 
 //converts a command character to a function, returns id function from util if no match is found
-const getFunction = (language, character) => {
+const getFunction = language => character => {
     const lowerCaseLetter = character.toLowerCase();
     const f = language.functions_map[lowerCaseLetter];
     return f || id;

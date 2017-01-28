@@ -6,7 +6,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const letter = 'f';
             const lang = LANGUAGES.EN
-            const f = getFunction(lang, letter);
+            const f = getFunction(lang)(letter);
             const newBot = f(bot)
             expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
         });
@@ -15,7 +15,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const letter = 'F';
             const lang = LANGUAGES.EN
-            const f = getFunction(lang, letter);
+            const f = getFunction(lang)(letter);
             const newBot = f(bot);
             expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
         });
@@ -24,7 +24,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const letter = 'f';
             const lang = LANGUAGES.SE
-            const f = getFunction(lang, letter);
+            const f = getFunction(lang)(letter);
             const newBot = f(bot);
             expect(newBot.position).to.deep.equal(createVector(0, 0)); //expect no movement, it should stay at the origin
         });
@@ -33,7 +33,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const letter = 'g';
             const lang = LANGUAGES.SE
-            const f = getFunction(lang, letter);
+            const f = getFunction(lang)(letter);
             const newBot = f(bot);
             expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
         });
@@ -42,7 +42,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const letter = 'h';
             const lang = LANGUAGES.SE
-            const f = getFunction(lang, letter);
+            const f = getFunction(lang)(letter);
             const newBot = f(bot);
             expect(newBot.direction).to.equal(DIRECTIONS.EAST); 
         });
