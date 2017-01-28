@@ -1,28 +1,30 @@
 /*
  * Contains functions related to basic vector algebra.
  */
-const createVector = (x, y) => {
-    return {
-        'x': x, 
-        'y': y
-    };
-};
+const createVector = (x, y) => ({
+    'x': x, 
+    'y': y
+})
 
-const addVectors = (v1, v2) => {
-    return {
-        'x': v1.x + v2.x,
-        'y': v1.y + v2.y
-    }
-}
+const addVectors = (v1, v2) => ({
+    'x': v1.x + v2.x,
+    'y': v1.y + v2.y
+})
 
-const getVectorDistance = (v1, v2) => {
+const subtractVectors = (v1, v2) => {
     const dx = v1.x - v2.x;
     const dy = v1.y - v2.y;
-    const dx2 = Math.pow(dx, 2);
-    const dy2 = Math.pow(dy, 2);
-    const distance = Math.pow(dx2 + dy2, 0.5);
-    return distance;
+    return createVector(dx, dy);
 }
+
+const vectorLength = v => {
+    const dx2 = Math.pow(v.x, 2);
+    const dy2 = Math.pow(v.y, 2);
+    const length = Math.pow(dx2 + dy2, 0.5);
+    return length;
+}
+
+const getVectorDistance = (v1, v2) => vectorLength(subtractVectors(v1, v2))
 
 //checks if v1 is in the rectangle created between v2 and v3
 const inRectangle = (v1, v2, v3) => {
