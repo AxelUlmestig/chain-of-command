@@ -53,7 +53,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const command = moveBot;
             const inConstraints = bot => bot.position.y > -1;
-            const constrainedCommand = constrainCommand(inConstraints, command);
+            const constrainedCommand = constrainCommand(inConstraints)(command);
             const newBot = constrainedCommand(bot);
             expect(newBot.position).to.deep.equal(createVector(0, 0));
         });
@@ -62,7 +62,7 @@ describe('interpreter', () => {
             const bot = initiateBot(createVector(0, 0));
             const command = moveBot;
             const inConstraints = bot => bot.position.x < 1;
-            const constrainedCommand = constrainCommand(inConstraints, command);
+            const constrainedCommand = constrainCommand(inConstraints)(command);
             const newBot = constrainedCommand(bot);
             expect(newBot.position).to.deep.equal(createVector(0, -1));
         });

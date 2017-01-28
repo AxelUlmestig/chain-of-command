@@ -37,7 +37,7 @@ const LANGUAGES = {
 const compileCommands = (commandString, language, inBounds) => {
     const commandArray = commandString.split('');
     const commands = commandArray.map(character => getFunction(language, character));
-    const constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
+    const constrainedCommands = commands.map(constrainCommand(inBounds));
     const commandChain = chainFunctions(constrainedCommands);
     return commandChain
 }
@@ -53,7 +53,7 @@ const getFunction = (language, character) => {
  * A decorator that executes a command and then checks if withinConstraints is true. 
  * If the result is not within the constraints then it will return the original function input.
  */
-const constrainCommand = (withinConstraints, command) => x => {
+const constrainCommand = withinConstraints => command => x => {
     const y = command(x);
     if(withinConstraints(y)) return y;
     return x;
