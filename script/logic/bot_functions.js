@@ -4,56 +4,56 @@
  *
  * Has dependencies to the following files/functions:
  *
- * 	script/logic/vector_functions.js
- * 		createVector(x, y)
- * 		addVectors(v1, v2)
- * 		cloneVector(v)
+ *  script/logic/vector_functions.js
+ *      createVector(x, y)
+ *      addVectors(v1, v2)
+ *      cloneVector(v)
  *
  */
 
 const DIRECTIONS = {
-	'NORTH': {
-		'name': 'NORTH',
-		'value': createVector(0, -1)
-	},
-	'EAST': {
-		'name': 'EAST',
-		'value': createVector(1, 0)
-	},
-	'SOUTH': {
-		'name': 'SOUTH',
-		'value': createVector(0, 1)
-	},
-	'WEST': {
-		'name': 'WEST',
-		'value': createVector(-1, 0)
-	}
+    'NORTH': {
+        'name': 'NORTH',
+        'value': createVector(0, -1)
+    },
+    'EAST': {
+        'name': 'EAST',
+        'value': createVector(1, 0)
+    },
+    'SOUTH': {
+        'name': 'SOUTH',
+        'value': createVector(0, 1)
+    },
+    'WEST': {
+        'name': 'WEST',
+        'value': createVector(-1, 0)
+    }
 }
 
 const initiateBot = (vector, direction) => {
-	return {
-		'position': cloneVector(vector),
-		'direction': direction || DIRECTIONS.NORTH
-	}
+    return {
+        'position': cloneVector(vector),
+        'direction': direction || DIRECTIONS.NORTH
+    }
 }
 
 const moveBot = bot => {
-	const dir = bot.direction;
-	const pos = addVectors(bot.position, dir.value);
-	const newBot = initiateBot(pos, dir);
-	return newBot;
+    const dir = bot.direction;
+    const pos = addVectors(bot.position, dir.value);
+    const newBot = initiateBot(pos, dir);
+    return newBot;
 }
 
 const turnBotRight = bot => {
-	const newDir = getNewDirection(bot, 1);
-	const newBot = initiateBot(bot.position, newDir);
-	return newBot;
+    const newDir = getNewDirection(bot, 1);
+    const newBot = initiateBot(bot.position, newDir);
+    return newBot;
 }
 
 const turnBotLeft = bot => {
-	const newDir = getNewDirection(bot, -1);
-	const newBot = initiateBot(bot.position, newDir);
-	return newBot;
+    const newDir = getNewDirection(bot, -1);
+    const newBot = initiateBot(bot.position, newDir);
+    return newBot;
 }
 
 /*
@@ -65,22 +65,22 @@ const turnBotLeft = bot => {
  * DIRECTIONS object.
  */
 const getNewDirection = (bot, turnValue) => {
-	const dirList = Object.keys(DIRECTIONS);
-	const dirListLen = dirList.length
-	const curDirIndex = dirList.indexOf(bot.direction.name);
-	const newDirIndex = (curDirIndex + turnValue + dirListLen) % dirListLen; //adding dirListLen because JS modulus operation can't handle negative values
-	const newDirName = dirList[newDirIndex];
-	const newDir = DIRECTIONS[newDirName];
-	return newDir;
+    const dirList = Object.keys(DIRECTIONS);
+    const dirListLen = dirList.length
+    const curDirIndex = dirList.indexOf(bot.direction.name);
+    const newDirIndex = (curDirIndex + turnValue + dirListLen) % dirListLen; //adding dirListLen because JS modulus operation can't handle negative values
+    const newDirName = dirList[newDirIndex];
+    const newDir = DIRECTIONS[newDirName];
+    return newDir;
 }
 
 const showBot = bot => {
-	try {
-		const x = bot.position.x;
-		const y = bot.position.y;
-		const direction = bot.direction.name.substring(0, 1);
-		return '(' + x + ', ' + y + ', ' + direction + ')';
-	} catch(err) {
-		return '()';
-	}
+    try {
+        const x = bot.position.x;
+        const y = bot.position.y;
+        const direction = bot.direction.name.substring(0, 1);
+        return '(' + x + ', ' + y + ', ' + direction + ')';
+    } catch(err) {
+        return '()';
+    }
 }

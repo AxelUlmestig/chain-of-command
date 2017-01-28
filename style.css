@@ -1,22 +1,22 @@
 .left_column {
-	float: left;
-	width: 50%;
+    float: left;
+    width: 50%;
 }
 
 .right_column {
-	float: right;
-	width: 50%;
+    float: right;
+    width: 50%;
 }
 
 #bot {
-  	bottom: 0;
-  	height: 100px;
-  	left: 0;
-  	margin: auto;
-  	position: absolute;
-  	top: 0;
-  	right: 0;
-  	width: 200px;
-	text-align: center;
-	transform: scale(1.5);
+    bottom: 0;
+    height: 100px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    text-align: center;
+    transform: scale(1.5);
 }
