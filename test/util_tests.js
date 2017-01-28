@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-describe('util', function(){
-	it('chain functions', function(){
+describe('util', () => {
+	it('chain functions', () => {
 		var add1 = x => x + 1;
 		
 		var mul2 = x => 2 * x;
@@ -13,7 +13,7 @@ describe('util', function(){
 		expect(output).to.equal(2);
 	});
 
-	it('id', function() {
+	it('id', () => {
 		var x = 3;
 		var y = id(x);
 		expect(y).to.equal(x);

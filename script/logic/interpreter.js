@@ -34,7 +34,7 @@ const LANGUAGES = {
 	}
 }
 
-var compileCommands = function(commandString, language, inBounds) {
+var compileCommands = (commandString, language, inBounds) => {
 	var commandArray = commandString.split('');
 	var commands = commandArray.map(character => getFunction(language, character));
 	var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
@@ -43,7 +43,7 @@ var compileCommands = function(commandString, language, inBounds) {
 }
 
 //converts a command character to a function, returns id function from util if no match is found
-var getFunction = function(language, character) {
+var getFunction = (language, character) => {
 	var lowerCaseLetter = character.toLowerCase();
 	var f = language.functions_map[lowerCaseLetter];
 	return f || id;
@@ -53,10 +53,8 @@ var getFunction = function(language, character) {
  * A decorator that executes a command and then checks if withinConstraints is true. 
  * If the result is not within the constraints then it will return the original function input.
  */
-var constrainCommand = function(withinConstraints, command) {
-	return function(x) {
-		var y = command(x);
-		if(withinConstraints(y)) return y;
-		return x;
-	}
+var constrainCommand = (withinConstraints, command) => x => {
+	var y = command(x);
+	if(withinConstraints(y)) return y;
+	return x;
 }

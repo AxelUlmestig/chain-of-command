@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
 
-describe('interpreter', function() {
-	describe('getFunction', function() {
-		it('english f', function(){
+describe('interpreter', () => {
+	describe('getFunction', () => {
+		it('english f', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'f';
 			var lang = LANGUAGES.EN
@@ -11,7 +11,7 @@ describe('interpreter', function() {
 			expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 		});
 
-		it('english F', function(){
+		it('english F', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'F';
 			var lang = LANGUAGES.EN
@@ -20,7 +20,7 @@ describe('interpreter', function() {
 			expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 		});
 
-		it('swedish f', function(){
+		it('swedish f', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'f';
 			var lang = LANGUAGES.SE
@@ -29,7 +29,7 @@ describe('interpreter', function() {
 			expect(newBot.position).to.deep.equal(createVector(0, 0)); //expect no movement, it should stay at the origin
 		});
 
-		it('swedish g', function(){
+		it('swedish g', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'g';
 			var lang = LANGUAGES.SE
@@ -38,7 +38,7 @@ describe('interpreter', function() {
 			expect(newBot.position).to.deep.equal(createVector(0, -1)); //expect one step north from (0, 0) -> (0, -1)
 		});
 
-		it('swedish h', function(){
+		it('swedish h', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var letter = 'h';
 			var lang = LANGUAGES.SE
@@ -48,8 +48,8 @@ describe('interpreter', function() {
 		});
 	});
 
-	describe('constrainCommand', function() {
-		it('moveBot constrained', function(){
+	describe('constrainCommand', () => {
+		it('moveBot constrained', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var command = moveBot;
 			var inConstraints = bot => bot.position.y > -1;
@@ -58,7 +58,7 @@ describe('interpreter', function() {
 			expect(newBot.position).to.deep.equal(createVector(0, 0));
 		});
 
-		it('moveBot unconstrained', function(){
+		it('moveBot unconstrained', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var command = moveBot;
 			var inConstraints = bot => bot.position.x < 1;
@@ -68,8 +68,8 @@ describe('interpreter', function() {
 		});
 	});
 
-	describe('compileCommands', function() {
-		it('unbound, english', function() {
+	describe('compileCommands', () => {
+		it('unbound, english', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
@@ -79,7 +79,7 @@ describe('interpreter', function() {
 			expect(movedBot.position).to.deep.equal(createVector(2, -1));
 		});
 
-		it('bound, english', function() {
+		it('bound, english', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'FQrFf'; //forward, ?, right, forward, forward
 			var lang = LANGUAGES.EN;
@@ -89,7 +89,7 @@ describe('interpreter', function() {
 			expect(movedBot.position).to.deep.equal(createVector(1, -1));
 		});
 
-		it('unbound, swedish', function() {
+		it('unbound, swedish', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = 'GFhGg'; //forward, (english forward), right, forward, forward
 			var lang = LANGUAGES.SE;
@@ -99,7 +99,7 @@ describe('interpreter', function() {
 			expect(movedBot.position).to.deep.equal(createVector(2, -1));
 		});
 
-		it('empty command', function() {
+		it('empty command', () => {
 			var bot = initiateBot(createVector(0, 0));
 			var commandString = '';
 			var lang = LANGUAGES.SE;

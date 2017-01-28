@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-describe('vector functions', function(){
-	it('add', function(){
+describe('vector functions', () => {
+	it('add', () => {
 		var x1 = -3;
 		var y1 = 3;
 		var x2 = 2;
@@ -13,8 +13,8 @@ describe('vector functions', function(){
 		expect(sum.y).to.equal(y1 + y2);
 	});
 
-	describe('inRectangle', function() {
-		it('true', function() {
+	describe('inRectangle', () => {
+		it('true', () => {
 			var x1 = 60;
 			var y1 = 175;
 			var x2 = 50;
@@ -27,7 +27,7 @@ describe('vector functions', function(){
 			expect(inRectangle(v1, v2, v3)).to.be.ok;
 		});
 
-		it('false', function() {
+		it('false', () => {
 			var x1 = 35;
 			var y1 = 175;
 			var x2 = 50;
@@ -41,7 +41,7 @@ describe('vector functions', function(){
 		});
 	});
 
-	it('distance', function() {
+	it('distance', () => {
 		var v1 = createVector(0, 0);
 		var v2 = createVector(3, 4);
 		var dist = getVectorDistance(v1, v2);

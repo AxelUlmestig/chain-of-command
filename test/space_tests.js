@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-describe('space functions', function(){
-	it('initiateBotInSpace', function(){
+describe('space functions', () => {
+	it('initiateBotInSpace', () => {
 		var xStart = 5;
 		var yStart = 5;
 
@@ -17,7 +17,7 @@ describe('space functions', function(){
 		expect(bot.position).to.deep.equal(expectedPosition);
 	});
 
-	it('createRectangularSpace', function(){
+	it('createRectangularSpace', () => {
 		/*
 		 * expected path:
 		 * 	forward, north: 		(5, 5, N) -> (5, 4, N)
@@ -48,7 +48,7 @@ describe('space functions', function(){
 		expect(movedBot.position).to.deep.equal(expectedPosition);
 	});
 
-	it('createCircularSpace', function(){
+	it('createCircularSpace', () => {
 		/*
 		 * expected path:
 		 * 	right: 				(1, 4, N) -> (1, 4, E)

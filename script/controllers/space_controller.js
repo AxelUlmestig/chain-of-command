@@ -9,7 +9,7 @@
  *
  */
 
-app.controller('space_controller', function($scope, state) {
+app.controller('space_controller', ($scope, state) => {
 	$scope.shapes = ['Rectangle', 'Circle'];
 
 	$scope.circle = {
@@ -23,7 +23,7 @@ app.controller('space_controller', function($scope, state) {
 		'corner2': {}
 	}
 
-	$scope.submitCircle = function(circ) {
+	$scope.submitCircle = circ => {
 		var xStart = circ.start.x;
 		var yStart = circ.start.y;
 
@@ -35,7 +35,7 @@ app.controller('space_controller', function($scope, state) {
 		state.space = createCircularSpace(xStart, yStart, xSpaceCenter, ySpaceCenter, radius);
 	}
 
-	$scope.submitRectangle = function(rect) {
+	$scope.submitRectangle = rect => {
 		var xStart = rect.start.x;
 		var yStart = rect.start.y;
 

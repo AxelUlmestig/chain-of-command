@@ -17,7 +17,7 @@
  *
  */
 
-app.controller('bot_controller', function($scope, state) {
+app.controller('bot_controller', ($scope, state) => {
 	$scope.state = state;
 	$scope.showBot = showBot;
 
@@ -28,7 +28,7 @@ app.controller('bot_controller', function($scope, state) {
 	 * $watchGroup is used because $watch doesn't seem to trigger when
 	 * a value is updated in the space but not the shape.
 	 */
-	$scope.$watchGroup(['state.space'], function(newValue, oldValue) {
+	$scope.$watchGroup(['state.space'], (newValue, oldValue) => {
 		if($scope.state.language && $scope.state.space) {
 			$scope.resetBot();
 		}
@@ -38,13 +38,13 @@ app.controller('bot_controller', function($scope, state) {
 	 * Initiates a bot if the space and language are ready but there is 
 	 * no bot.
 	 */
-	$scope.$watchGroup(['state.language'], function(newValue, oldValue) {
+	$scope.$watchGroup(['state.language'], (newValue, oldValue) => {
 		if($scope.state.language && $scope.state.space && !$scope.state.bot) {
 			$scope.resetBot();
 		}
 	}, true);
 
-	$scope.sendCommand = function(commandString) {
+	$scope.sendCommand = (commandString) => {
 		var space = $scope.state.space;
 		var lang = $scope.state.language;
 		var command = compileCommands(commandString, lang, space.contains);
@@ -53,8 +53,6 @@ app.controller('bot_controller', function($scope, state) {
 		$scope.state.bot = command(bot)
 	}
 
-	$scope.resetBot = function() {
-		var space = $scope.state.space;
-		$scope.state.bot = initiateBotInSpace(space);
-	}
+	$scope.resetBot = () => $scope.state.bot = initiateBotInSpace($scope.state.space)
+
 })

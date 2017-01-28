@@ -6,7 +6,7 @@
  * 		LANGUAGES
  *
  */
-app.controller('lang_controller', function($scope, state) {
+app.controller('lang_controller', ($scope, state) => {
 	$scope.state = state;
 	$scope.languages = LANGUAGES;
 	
@@ -14,7 +14,5 @@ app.controller('lang_controller', function($scope, state) {
 	 * I wanted to use '$scope.state.language = $scope.selectedLang;', but angular stringifies the 
 	 * selectedLang variable making the functions in it disappear
 	 */
-	$scope.selectedLangChanged = function(name) {
-		$scope.state.language = LANGUAGES[name];
-	}
+	$scope.selectedLangChanged = name => $scope.state.language = LANGUAGES[name];
 });

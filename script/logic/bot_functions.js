@@ -30,27 +30,27 @@ const DIRECTIONS = {
 	}
 }
 
-var initiateBot = function(vector, direction) {
+var initiateBot = (vector, direction) => {
 	return {
 		'position': cloneVector(vector),
 		'direction': direction || DIRECTIONS.NORTH
 	}
 }
 
-var moveBot = function(bot) {
+var moveBot = bot => {
 	var dir = bot.direction;
 	var pos = addVectors(bot.position, dir.value);
 	var newBot = initiateBot(pos, dir);
 	return newBot;
 }
 
-var turnBotRight = function(bot) {
+var turnBotRight = bot => {
 	var newDir = getNewDirection(bot, 1);
 	var newBot = initiateBot(bot.position, newDir);
 	return newBot;
 }
 
-var turnBotLeft = function(bot) {
+var turnBotLeft = bot => {
 	var newDir = getNewDirection(bot, -1);
 	var newBot = initiateBot(bot.position, newDir);
 	return newBot;
@@ -64,7 +64,7 @@ var turnBotLeft = function(bot) {
  * This function is dependent on the order in which the directions are added to the 
  * DIRECTIONS object.
  */
-var getNewDirection = function(bot, turnValue) {
+var getNewDirection = (bot, turnValue) => {
 	var dirList = Object.keys(DIRECTIONS);
 	var dirListLen = dirList.length
 	var curDirIndex = dirList.indexOf(bot.direction.name);
@@ -74,7 +74,7 @@ var getNewDirection = function(bot, turnValue) {
 	return newDir;
 }
 
-var showBot = function(bot) {
+var showBot = bot => {
 	try {
 		var x = bot.position.x;
 		var y = bot.position.y;
