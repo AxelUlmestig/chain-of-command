@@ -1,19 +1,19 @@
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
 describe('space functions', () => {
 	it('initiateBotInSpace', () => {
-		var xStart = 5;
-		var yStart = 5;
+		const xStart = 5;
+		const yStart = 5;
 
-		var xCorner1 = 0;
-		var yCorner1 = 0;
+		const xCorner1 = 0;
+		const yCorner1 = 0;
 
-		var xCorner2 = 10;
-		var yCorner2 = 10;
+		const xCorner2 = 10;
+		const yCorner2 = 10;
 
-		var space = createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2);
-		var bot = initiateBotInSpace(space);
-		var expectedPosition = createVector(xStart, yStart);
+		const space = createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2);
+		const bot = initiateBotInSpace(space);
+		const expectedPosition = createVector(xStart, yStart);
 		expect(bot.position).to.deep.equal(expectedPosition);
 	});
 
@@ -27,24 +27,24 @@ describe('space functions', () => {
 		 * 	forward, south:			(5, 4, S) -> (5, 5, S)
 		 * 	forward, south: 		(5, 5, S) -> (5, 6, S)
 		 */	
-		var xCorner1 = 0;
-		var yCorner1 = 4;
+		const xCorner1 = 0;
+		const yCorner1 = 4;
 
-		var xCorner2 = 10;
-		var yCorner2 = 7;
+		const xCorner2 = 10;
+		const yCorner2 = 7;
 
-		var xStart = 5;
-		var yStart = 5;
+		const xStart = 5;
+		const yStart = 5;
 
-		var space = createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2);
-		var bot = initiateBotInSpace(space);
-		var lang = LANGUAGES.EN;
+		const space = createRectangularSpace(xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2);
+		const bot = initiateBotInSpace(space);
+		const lang = LANGUAGES.EN;
 
-		var commandString = 'ffllff'; //forward, forward, left, left, forward, forward
-		var command = compileCommands(commandString, lang, space.contains);
-		var movedBot = command(bot);
+		const commandString = 'ffllff'; //forward, forward, left, left, forward, forward
+		const command = compileCommands(commandString, lang, space.contains);
+		const movedBot = command(bot);
 
-		var expectedPosition = createVector(5, 6);
+		const expectedPosition = createVector(5, 6);
 		expect(movedBot.position).to.deep.equal(expectedPosition);
 	});
 
@@ -59,22 +59,22 @@ describe('space functions', () => {
 		 * 	forward, east: 			(2, 5, E) -> (3, 5, E)
 		 * 	forward, east (hit wall): 	(3, 5, E) -> (3, 5, E)
 		 */	
-		var xSpaceCenter = 0;
-		var ySpaceCenter = 5;
-		var radius = 3;
+		const xSpaceCenter = 0;
+		const ySpaceCenter = 5;
+		const radius = 3;
 
-		var xStart = 1;
-		var yStart = 4;
+		const xStart = 1;
+		const yStart = 4;
 
-		var space = createCircularSpace(xStart, yStart, xSpaceCenter, ySpaceCenter, radius);
-		var bot = initiateBotInSpace(space);
-		var lang = LANGUAGES.EN;
+		const space = createCircularSpace(xStart, yStart, xSpaceCenter, ySpaceCenter, radius);
+		const bot = initiateBotInSpace(space);
+		const lang = LANGUAGES.EN;
 
-		var commandString = 'rrflfff'; //right, right, forward, left, forward, forward, forward
-		var command = compileCommands(commandString, lang, space.contains);
-		var movedBot = command(bot);
+		const commandString = 'rrflfff'; //right, right, forward, left, forward, forward, forward
+		const command = compileCommands(commandString, lang, space.contains);
+		const movedBot = command(bot);
 
-		var expectedPosition = createVector(3, 5);
+		const expectedPosition = createVector(3, 5);
 		expect(movedBot.position).to.deep.equal(expectedPosition);
 	});
 });

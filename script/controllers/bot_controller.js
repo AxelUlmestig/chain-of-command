@@ -45,11 +45,11 @@ app.controller('bot_controller', ($scope, state) => {
 	}, true);
 
 	$scope.sendCommand = (commandString) => {
-		var space = $scope.state.space;
-		var lang = $scope.state.language;
-		var command = compileCommands(commandString, lang, space.contains);
+		const space = $scope.state.space;
+		const lang = $scope.state.language;
+		const command = compileCommands(commandString, lang, space.contains);
 
-		var bot = $scope.state.bot;
+		const bot = $scope.state.bot;
 		$scope.state.bot = command(bot)
 	}
 

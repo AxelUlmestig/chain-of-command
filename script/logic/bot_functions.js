@@ -30,29 +30,29 @@ const DIRECTIONS = {
 	}
 }
 
-var initiateBot = (vector, direction) => {
+const initiateBot = (vector, direction) => {
 	return {
 		'position': cloneVector(vector),
 		'direction': direction || DIRECTIONS.NORTH
 	}
 }
 
-var moveBot = bot => {
-	var dir = bot.direction;
-	var pos = addVectors(bot.position, dir.value);
-	var newBot = initiateBot(pos, dir);
+const moveBot = bot => {
+	const dir = bot.direction;
+	const pos = addVectors(bot.position, dir.value);
+	const newBot = initiateBot(pos, dir);
 	return newBot;
 }
 
-var turnBotRight = bot => {
-	var newDir = getNewDirection(bot, 1);
-	var newBot = initiateBot(bot.position, newDir);
+const turnBotRight = bot => {
+	const newDir = getNewDirection(bot, 1);
+	const newBot = initiateBot(bot.position, newDir);
 	return newBot;
 }
 
-var turnBotLeft = bot => {
-	var newDir = getNewDirection(bot, -1);
-	var newBot = initiateBot(bot.position, newDir);
+const turnBotLeft = bot => {
+	const newDir = getNewDirection(bot, -1);
+	const newBot = initiateBot(bot.position, newDir);
 	return newBot;
 }
 
@@ -64,21 +64,21 @@ var turnBotLeft = bot => {
  * This function is dependent on the order in which the directions are added to the 
  * DIRECTIONS object.
  */
-var getNewDirection = (bot, turnValue) => {
-	var dirList = Object.keys(DIRECTIONS);
-	var dirListLen = dirList.length
-	var curDirIndex = dirList.indexOf(bot.direction.name);
-	var newDirIndex = (curDirIndex + turnValue + dirListLen) % dirListLen; //adding dirListLen because JS modulus operation can't handle negative values
-	var newDirName = dirList[newDirIndex];
-	var newDir = DIRECTIONS[newDirName];
+const getNewDirection = (bot, turnValue) => {
+	const dirList = Object.keys(DIRECTIONS);
+	const dirListLen = dirList.length
+	const curDirIndex = dirList.indexOf(bot.direction.name);
+	const newDirIndex = (curDirIndex + turnValue + dirListLen) % dirListLen; //adding dirListLen because JS modulus operation can't handle negative values
+	const newDirName = dirList[newDirIndex];
+	const newDir = DIRECTIONS[newDirName];
 	return newDir;
 }
 
-var showBot = bot => {
+const showBot = bot => {
 	try {
-		var x = bot.position.x;
-		var y = bot.position.y;
-		var direction = bot.direction.name.substring(0, 1);
+		const x = bot.position.x;
+		const y = bot.position.y;
+		const direction = bot.direction.name.substring(0, 1);
 		return '(' + x + ', ' + y + ', ' + direction + ')';
 	} catch(err) {
 		return '()';

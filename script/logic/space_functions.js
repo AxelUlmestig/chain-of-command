@@ -15,37 +15,37 @@
  * 		
  */
 
-var createRectangleBoundary = (v1, v2) => bot =>
+const createRectangleBoundary = (v1, v2) => bot =>
     inRectangle(bot.position, v1, v2);
 
-var createCircleBoundary = (center, radius) => bot => {
-	var pos = bot.position;
-	var distance = getVectorDistance(pos, center);
+const createCircleBoundary = (center, radius) => bot => {
+	const pos = bot.position;
+	const distance = getVectorDistance(pos, center);
 	return distance <= radius
 }
 
-var createSpace = (startPosition, contains) => ({
+const createSpace = (startPosition, contains) => ({
 	'start_position': startPosition,
 	'contains': contains
 })
 
-var createCircularSpace = (xStart, yStart, xCenter, yCenter, radius) => {
-	var startPosition = createVector(xStart, yStart);
-	var circleCenter = createVector(xCenter, yCenter);
-	var inBoundary = createCircleBoundary(circleCenter, radius);
+const createCircularSpace = (xStart, yStart, xCenter, yCenter, radius) => {
+	const startPosition = createVector(xStart, yStart);
+	const circleCenter = createVector(xCenter, yCenter);
+	const inBoundary = createCircleBoundary(circleCenter, radius);
 	return createSpace(startPosition, inBoundary);
 }
 
-var createRectangularSpace = (xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2) => {
-	var startPosition = createVector(xStart, yStart);
-	var corner1 = createVector(xCorner1, yCorner1);
-	var corner2 = createVector(xCorner2, yCorner2);
-	var inBoundary = createRectangleBoundary(corner1, corner2);
+const createRectangularSpace = (xStart, yStart, xCorner1, yCorner1, xCorner2, yCorner2) => {
+	const startPosition = createVector(xStart, yStart);
+	const corner1 = createVector(xCorner1, yCorner1);
+	const corner2 = createVector(xCorner2, yCorner2);
+	const inBoundary = createRectangleBoundary(corner1, corner2);
 	return createSpace(startPosition, inBoundary);
 }
 
-var initiateBotInSpace = (space) => {
-	var startPosition = space.start_position;
-	var bot = initiateBot(startPosition);
+const initiateBotInSpace = (space) => {
+	const startPosition = space.start_position;
+	const bot = initiateBot(startPosition);
 	return bot;
 }
