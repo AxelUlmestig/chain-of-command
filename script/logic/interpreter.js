@@ -10,7 +10,7 @@
  * 		turnBotLeft(bot)
  *
  * 	script/logic/util.js
- * 		createChain(functions)
+ * 		chainFunctions(functions)
  * 		id(x)
  *
  */
@@ -38,7 +38,7 @@ var compileCommands = function(commandString, language, inBounds) {
 	var commandArray = commandString.split('');
 	var commands = commandArray.map(character => getFunction(language, character));
 	var constrainedCommands = commands.map(command => constrainCommand(inBounds, command));
-	var commandChain = createChain(constrainedCommands);
+	var commandChain = chainFunctions(constrainedCommands);
 	return commandChain
 }
 
