@@ -1,66 +1,66 @@
 INSTRUCTIONS
 
-	Open index.html.
+    Open index.html.
 
-	In order to control the bot you must first set a language and create a space for the bot
-	to frollic in. This is done in the top left and right corners of the page.
-	Once the language and space has been defined, a prompt and a printed representation
-	of a bot appears. The position of the bot is the start position that was defined in the 
-	space.
-	
-	The bot takes a string of text as input. It will identify single letters in the input 
-	as commands for actions. It will ignore characters that it doesn't recognize.
-	
-	The bot will reset back to the initial position of the space if any updates are
-	made to the space. The bot will not be able to move (or turn) if the starting position
-	of the space is outside of the space's boundary.
+    In order to control the bot you must first set a language and create a space for the bot
+    to frollic in. This is done in the top left and right corners of the page.
+    Once the language and space has been defined, a prompt and a printed representation
+    of a bot appears. The position of the bot is the start position that was defined in the 
+    space.
+    
+    The bot takes a string of text as input. It will identify single letters in the input 
+    as commands for actions. It will ignore characters that it doesn't recognize.
+    
+    The bot will reset back to the initial position of the space if any updates are
+    made to the space. The bot will not be able to move (or turn) if the starting position
+    of the space is outside of the space's boundary.
 
-	There are four directions that the bot can move in: north, east, south and west.
-	Movement from north to south will increase the value of the Y coordinate.
-	Movement from west to east will increase the value of the X coordinate.
+    There are four directions that the bot can move in: north, east, south and west.
+    Movement from north to south will increase the value of the Y coordinate.
+    Movement from west to east will increase the value of the X coordinate.
 
 DESIGN DECISIONS
 
-	*The bot can stand on the "edges" of the spaces but is not allowed to go past them.
-	E.g. if the space is a square consisting of (0, 0), (0, 1), (1, 1) and (1, 0)
-	then the the bot can stand on all those positions but not on (1.001, 0)
+    *The bot can stand on the "edges" of the spaces but is not allowed to go past them.
+    E.g. if the space is a square consisting of (0, 0), (0, 1), (1, 1) and (1, 0)
+    then the the bot can stand on all those positions but not on (1.001, 0)
 
-	*Rectangles (as used for boundaries) are assumed to have it's edges parallel to
-	the coordinate axes. This saves me a lot of cumbersome mathematics which I think
-	are beyond the scope of this assignment.
+    *Rectangles (as used for boundaries) are assumed to have it's edges parallel to
+    the coordinate axes. This saves me a lot of cumbersome mathematics which I think
+    are beyond the scope of this assignment.
 
-	*I chose to create the bot and it's behaviour using functional design principles.
+    *I chose to create the bot and it's behaviour using functional design principles.
 
-	*I split the javascript in two segments. scripts/logic and script/controllers.
-	The logic folder contains all the functions necessary to keep track of a bot and 
-	a space. The controllers folder contains functions necessary for the web front end
-	to use the functions in the logic folder.
+    *I split the javascript in two segments. scripts/logic and script/controllers.
+    The logic folder contains all the functions necessary to keep track of a bot and 
+    a space. The controllers folder contains functions necessary for the web front end
+    to use the functions in the logic folder.
 
-	*The controllers logic uses Angular to interact with the html.
+    *The controllers logic uses Angular to interact with the html.
 
-	*I've mostly written javascript using node.js before and I am not quite sure of
-	how to properly handle the imports and dependencies. Currently all the .js files
-	are loaded in the index.html page. I would have wanted some scoping of the 
-	files and ideally only expose one file to the html.
+    *I've mostly written javascript using node.js before and I am not quite sure of
+    how to properly handle the imports and dependencies. Currently all the .js files
+    are loaded in the index.html page. I would have wanted some scoping of the 
+    files and ideally only expose one file to the html.
 
-	*The control for the bot is positioned in the absolute center of the screen.
-	This makes it pretty unresponsive unfortunately, but it looks neat to have 
-	it there.
+    *The control for the bot is positioned in the absolute center of the screen.
+    This makes it pretty unresponsive unfortunately, but it looks neat to have 
+    it there.
 
 TESTING
 
-	npm test
+    npm test
 
-	This runs unit tests for all the script/logic functions. There are currently no 
-	automatic tests for interacting with the web interface.
+    This runs unit tests for all the script/logic functions. There are currently no 
+    automatic tests for interacting with the web interface.
 
 PROGRESSIVE ENHANCEMENTS
 
-	I did not apply any progressive enhancements. At some places I use <input type="number">
-	which I believe is HTML5. I also use arrow function notation and the const keyword in the 
-	javascript I think is part of ES6. I have not looked in to the compatability of different 
-	browsers for these things.
-	It works well with Chrome Version 50.0.2661.102 (64-bit).
+    I did not apply any progressive enhancements. At some places I use <input type="number">
+    which I believe is HTML5. I also use arrow function notation and the const keyword in the 
+    javascript I think is part of ES6. I have not looked in to the compatability of different 
+    browsers for these things.
+    It works well with Chrome Version 50.0.2661.102 (64-bit).
 
 GIT
-	There is complete git history in the folder.
+    There is complete git history in the folder.
