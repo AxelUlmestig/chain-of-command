@@ -10,7 +10,6 @@
  *      turnBotLeft(bot)
  *
  *  script/logic/util.js
- *      chainFunctions(functions)
  *      id(x)
  *
  */
@@ -34,13 +33,12 @@ const LANGUAGES = {
     }
 }
 
-const compileCommands = (commandString, language, inBounds) =>
-    chainFunctions(
-        commandString
-        .split('')
-        .map(getFunction(language))
-        .map(constrainCommand(inBounds))
-    )
+const compileCommands = (commandString, language, inBounds) => arg =>
+    commandString
+    .split('')
+    .map(getFunction(language))
+    .map(constrainCommand(inBounds))
+    .reduce((mem, f) => f(mem), arg)
 
 //converts a command character to a function, returns id function from util if no match is found
 const getFunction = language => character => {
