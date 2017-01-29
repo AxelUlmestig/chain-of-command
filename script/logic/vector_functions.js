@@ -18,9 +18,9 @@ const subtractVectors = (v1, v2) => {
 }
 
 const vectorLength = v => {
-    const dx2 = Math.pow(v.x, 2);
-    const dy2 = Math.pow(v.y, 2);
-    const length = Math.pow(dx2 + dy2, 0.5);
+    const x2 = Math.pow(v.x, 2);
+    const y2 = Math.pow(v.y, 2);
+    const length = Math.pow(x2 + y2, 0.5);
     return length;
 }
 
